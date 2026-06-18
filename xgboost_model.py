@@ -93,3 +93,9 @@ plt.savefig("outputs/shap_waterfall.png", bbox_inches="tight")
 plt.show()
 
 
+#_______results from waterfall model_________________
+# E[f(X)] = 5,685,144.5, is the model's baseline expected prediction averaged across all training data. Each bar then shows how much each feature pushed the prediction away from that baseline, ending at the final predicted value of roughly ₹4,697,268 at the top.
+#revenue_vs_4w_avg pulled the prediction down by ₹4,41,048 — by far the dominant factor. This means that week's revenue was running noticeably below its recent 4-week average, and the model leaned heavily on that signal to predict a lower number.
+#rolling_mean_4 pushed it back up by ₹1,05,046, partially offsetting that — the recent 4-week average itself was still reasonably healthy.
+#revenue_pct_change_52, wow_change, and lag_4 all pulled slightly down, reinforcing the "this week is underperforming its recent pattern" story.
+#lag_2, lag_1, and lag_52 pulled slightly up, adding small counterbalancing signals from recent and year-ago revenue.
