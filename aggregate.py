@@ -1,33 +1,36 @@
-import pandas as pd 
-invoices_df=pd.read_csv("data/invoices.csv")
+#______importing libraries__________
+import pandas as pd
 
-#______filtering paid invoices____________
-invoices_df=invoices_df[invoices_df["status"]=="paid"]
+#______loading customer payments data__________
+payments_df = pd.read_csv("data/customerpayments.csv")
 
-#______converting payment_date to datetime______
-invoices_df["payment_date"]=pd.to_datetime(invoices_df["payment_date"])
+#______filtering successful payments________
+payments_df = payments_df[payments_df["status"] == "success"]
 
-#______setting payment_date as week start using Monday as anchor___________
-invoices_df["week_start"]=invoices_df["payment_date"].dt.to_period("W-SUN").dt.start_time
+#______converting date to datetime________
+payments_df["date"] = pd.to_datetime(payments_df["date"])
 
-#______aggregating amount_paid to weekly revenue _________________
-weekly_revenue=invoices_df.groupby("week_start")["amount_paid"].sum().reset_index()
-weekly_revenue.columns=["week_start","revenue"]
+#______setting date as week start using Monday as anchor________
+payments_df["week_start"] = payments_df["date"].dt.to_period("W-SUN").dt.start_time
 
-#______creating a complete data range with no missing weeks___________________
-all_weeks=pd.date_range(start="2022-01-01",end="2025-12-31",freq="W-MON")
-all_weeks_df=pd.DataFrame({"week_start":all_weeks})
-
-#______merging and filling the missing weeks with zero_______________
-weekly_revenue=all_weeks_df.merge(weekly_revenue,on="week_start",how="left")
+#______aggregating amount_applied to weekly revenue________
+weekly_revenue = payments_df.groupby("week_start")["amount_applied"].sum().reset_index()
 weekly_revenue.columns = ["week_start", "revenue"]
-weekly_revenue["revenue"]=weekly_revenue["revenue"].fillna(0)
 
-#______sorting by date to ensure chronological order_______________
-weekly_revenue=weekly_revenue.sort_values("week_start").reset_index(drop=True)
+#______creating a complete date range with no missing weeks________
+all_weeks = pd.date_range(start="2022-01-01", end="2025-12-31", freq="W-MON")
+all_weeks_df = pd.DataFrame({"week_start": all_weeks})
 
-#______saving weekly revenue to data folder___________________
-weekly_revenue.to_csv("data/weekly_revenue.csv",index=False)
+#______merging and filling missing weeks with zero________
+weekly_revenue = all_weeks_df.merge(weekly_revenue, on="week_start", how="left")
+weekly_revenue.columns = ["week_start", "revenue"]
+weekly_revenue["revenue"] = weekly_revenue["revenue"].fillna(0)
 
-print(f"Total weeks::{len(weekly_revenue)}")
+#______sorting by date to ensure chronological order________
+weekly_revenue = weekly_revenue.sort_values("week_start").reset_index(drop=True)
+
+#______saving weekly revenue to data folder__________
+weekly_revenue.to_csv("data/weekly_revenue.csv", index=False)
+
+print(f"Total weeks: {len(weekly_revenue)}")
 print(weekly_revenue.head())

@@ -1,301 +1,301 @@
-customer_ID,customer_name,profile
-CUST0001,Thomas-Davidson,slow
-CUST0002,Gallagher-Noble,reliable
-CUST0003,"Harper, Rodriguez and Martin",reliable
-CUST0004,Flynn-Price,reliable
-CUST0005,Anderson-Robinson,slow
-CUST0006,"Joseph, Garrett and Horn",slow
-CUST0007,Davis-Schmitt,slow
-CUST0008,Kaufman-Hudson,reliable
-CUST0009,Jones-Schmitt,reliable
-CUST0010,"Medina, Little and Hall",reliable
-CUST0011,Peters Ltd,reliable
-CUST0012,Baker-King,reliable
-CUST0013,Cohen Group,reliable
-CUST0014,"Jones, Case and Nunez",reliable
-CUST0015,Martin and Sons,slow
-CUST0016,Medina Inc,reliable
-CUST0017,Williams LLC,reliable
-CUST0018,Anderson-Townsend,reliable
-CUST0019,Morris-Archer,slow
-CUST0020,Clarke-Smith,reliable
-CUST0021,"Cooper, Logan and Hudson",slow
-CUST0022,"Robinson, Cox and Cohen",slow
-CUST0023,Lee Inc,reliable
-CUST0024,Deleon-Clark,reliable
-CUST0025,Nichols PLC,risky
-CUST0026,"Nunez, Lopez and Taylor",reliable
-CUST0027,Jones Group,reliable
-CUST0028,Goodman Group,reliable
-CUST0029,Roberts LLC,slow
-CUST0030,"Richards, Johnson and Nelson",slow
-CUST0031,"Fields, Smith and Joseph",slow
-CUST0032,"Sullivan, Navarro and Garcia",slow
-CUST0033,"Martinez, Bradley and Adkins",reliable
-CUST0034,Bradley-Gonzalez,risky
-CUST0035,"Orozco, Reese and Bowman",reliable
-CUST0036,Baker and Sons,reliable
-CUST0037,"Thompson, Booker and Herrera",slow
-CUST0038,Foster Inc,slow
-CUST0039,"Gonzales, Taylor and Rubio",slow
-CUST0040,Riley-Weaver,reliable
-CUST0041,Alexander-Stone,slow
-CUST0042,"Phillips, Vang and Armstrong",reliable
-CUST0043,"Hamilton, Wall and Beck",reliable
-CUST0044,"Lucas, Gomez and Wallace",reliable
-CUST0045,"Wallace, Martinez and Shepherd",reliable
-CUST0046,Larsen Inc,reliable
-CUST0047,"Guzman, Johnson and Morgan",reliable
-CUST0048,Gordon-Johnson,reliable
-CUST0049,Thompson and Sons,slow
-CUST0050,Hanson LLC,reliable
-CUST0051,Dodson-Potter,reliable
-CUST0052,White-Espinoza,reliable
-CUST0053,Phelps-Knight,reliable
-CUST0054,Bennett-Liu,risky
-CUST0055,Mills-Singh,slow
-CUST0056,Church-Bradley,slow
-CUST0057,"Hickman, Frank and Craig",reliable
-CUST0058,Johnson LLC,slow
-CUST0059,"Bishop, Nelson and Price",reliable
-CUST0060,"Swanson, Lin and Mora",reliable
-CUST0061,Gentry-Khan,risky
-CUST0062,"Sanders, Hardy and Castillo",slow
-CUST0063,Perkins and Sons,reliable
-CUST0064,Brown LLC,slow
-CUST0065,Stokes-Walker,slow
-CUST0066,Peterson and Sons,slow
-CUST0067,Higgins-Gonzalez,reliable
-CUST0068,Patton PLC,reliable
-CUST0069,Tanner LLC,reliable
-CUST0070,Palmer Group,reliable
-CUST0071,Fields Group,reliable
-CUST0072,Nicholson-Williams,risky
-CUST0073,Santiago LLC,slow
-CUST0074,Cooper-Suarez,reliable
-CUST0075,Bryant-Gonzalez,slow
-CUST0076,Franklin and Sons,reliable
-CUST0077,Taylor-Mullen,risky
-CUST0078,Thomas and Sons,reliable
-CUST0079,Butler-Rodriguez,reliable
-CUST0080,Ford PLC,reliable
-CUST0081,"Ross, Robinson and Hall",reliable
-CUST0082,Bowman Inc,reliable
-CUST0083,Wilcox LLC,reliable
-CUST0084,Elliott LLC,slow
-CUST0085,Zamora Group,reliable
-CUST0086,Ray Ltd,reliable
-CUST0087,Fox LLC,risky
-CUST0088,"Hale, Richards and Page",reliable
-CUST0089,Lane Inc,reliable
-CUST0090,Ramirez Group,reliable
-CUST0091,"Pollard, Martinez and Carr",reliable
-CUST0092,"Byrd, Hall and Lee",slow
-CUST0093,"Hughes, Moore and Fritz",slow
-CUST0094,Jennings-Cruz,reliable
-CUST0095,Henderson and Sons,reliable
-CUST0096,Roman Ltd,reliable
-CUST0097,Myers-Hale,risky
-CUST0098,Gibson Ltd,reliable
-CUST0099,White-Fuentes,risky
-CUST0100,Henry-Ward,slow
-CUST0101,"Perry, Munoz and Graham",reliable
-CUST0102,Moreno-Roberts,slow
-CUST0103,Smith PLC,slow
-CUST0104,"George, Spencer and Burton",reliable
-CUST0105,Jones Inc,reliable
-CUST0106,Guzman-Sanchez,slow
-CUST0107,Dunn Ltd,reliable
-CUST0108,Spencer-Humphrey,reliable
-CUST0109,Bennett-Holmes,reliable
-CUST0110,"Dunlap, Miles and Romero",risky
-CUST0111,"Harris, Johnson and Bullock",slow
-CUST0112,Patterson Inc,reliable
-CUST0113,Lowe and Sons,reliable
-CUST0114,Curtis-Rowland,reliable
-CUST0115,Jackson Ltd,risky
-CUST0116,Jordan-Malone,slow
-CUST0117,Elliott LLC,reliable
-CUST0118,Smith LLC,slow
-CUST0119,"Barber, Williams and Woods",slow
-CUST0120,Williams Group,reliable
-CUST0121,Larson-Chavez,slow
-CUST0122,Higgins-Montgomery,reliable
-CUST0123,"Johnson, Baker and Barajas",slow
-CUST0124,Thomas-Andrews,reliable
-CUST0125,"Davis, Brown and Nelson",reliable
-CUST0126,"Barnett, Spears and Davis",reliable
-CUST0127,Alvarez-Morton,reliable
-CUST0128,Lamb PLC,risky
-CUST0129,Hunter-Lyons,slow
-CUST0130,Jones Ltd,slow
-CUST0131,Meyers PLC,reliable
-CUST0132,Duke LLC,reliable
-CUST0133,Harrison and Sons,slow
-CUST0134,Berry Group,risky
-CUST0135,"Murray, Robertson and Yang",reliable
-CUST0136,West-Leblanc,reliable
-CUST0137,Taylor Ltd,reliable
-CUST0138,Hudson-Wilson,slow
-CUST0139,Patterson LLC,slow
-CUST0140,"Russell, Klein and Moon",reliable
-CUST0141,Terrell-Harris,reliable
-CUST0142,Ward-Smith,reliable
-CUST0143,Bradley and Sons,reliable
-CUST0144,Rosales LLC,slow
-CUST0145,Simpson-Williams,reliable
-CUST0146,Bennett and Sons,reliable
-CUST0147,Lee LLC,reliable
-CUST0148,Barrera Group,slow
-CUST0149,"Deleon, Williamson and Mayer",reliable
-CUST0150,"Dominguez, Pearson and Peters",reliable
-CUST0151,"Johnson, Mckee and Rodriguez",risky
-CUST0152,Allen-Wolf,slow
-CUST0153,"Fisher, Jackson and Gould",reliable
-CUST0154,Cline and Sons,reliable
-CUST0155,Reilly Ltd,reliable
-CUST0156,"Carter, Evans and Garrett",reliable
-CUST0157,"Wilkerson, Cannon and Mills",reliable
-CUST0158,"Martinez, Burgess and Rogers",reliable
-CUST0159,Medina Group,reliable
-CUST0160,Whitehead Inc,reliable
-CUST0161,"Martinez, Jones and Guerrero",reliable
-CUST0162,Perkins and Sons,slow
-CUST0163,Arnold-Welch,reliable
-CUST0164,Hawkins-Jones,risky
-CUST0165,Williams-Bennett,slow
-CUST0166,Sellers-Lewis,reliable
-CUST0167,Marquez-Phelps,reliable
-CUST0168,"Farmer, Lee and Fitzpatrick",slow
-CUST0169,French-Gonzales,reliable
-CUST0170,Nunez LLC,reliable
-CUST0171,Williams-Wolf,risky
-CUST0172,"Hebert, Phillips and Lin",reliable
-CUST0173,Hopkins LLC,reliable
-CUST0174,Clayton Group,slow
-CUST0175,Lambert and Sons,slow
-CUST0176,Porter-Alvarez,reliable
-CUST0177,"Galvan, Martin and Carter",reliable
-CUST0178,Butler Ltd,reliable
-CUST0179,Fitzpatrick PLC,reliable
-CUST0180,"Smith, Brennan and Smith",reliable
-CUST0181,Griffith-Ortiz,slow
-CUST0182,Hall Inc,slow
-CUST0183,Ward PLC,risky
-CUST0184,Thompson PLC,reliable
-CUST0185,Massey and Sons,reliable
-CUST0186,Vazquez PLC,reliable
-CUST0187,Wall LLC,slow
-CUST0188,Rodriguez Ltd,reliable
-CUST0189,Morris Group,reliable
-CUST0190,Hart-Baker,reliable
-CUST0191,Mason-Reynolds,reliable
-CUST0192,"Frey, Martin and Watson",reliable
-CUST0193,Villegas LLC,reliable
-CUST0194,Wall-Mueller,risky
-CUST0195,"Evans, Moore and Howard",reliable
-CUST0196,Fisher PLC,slow
-CUST0197,"Clay, Green and Castillo",reliable
-CUST0198,Williams LLC,reliable
-CUST0199,"Oneill, Johnson and Crawford",risky
-CUST0200,"Mccormick, Brandt and Stark",slow
-CUST0201,"Dorsey, Ramos and Coffey",risky
-CUST0202,"Murray, Houston and Jones",risky
-CUST0203,Young-Madden,slow
-CUST0204,"Johnson, Cole and Garcia",reliable
-CUST0205,"Frazier, Roach and Garza",reliable
-CUST0206,"Shah, Daugherty and Simmons",reliable
-CUST0207,"Thompson, Ho and Hernandez",reliable
-CUST0208,Watkins-Schneider,reliable
-CUST0209,Williams PLC,reliable
-CUST0210,Nunez-Lloyd,risky
-CUST0211,Sandoval-Mcdonald,reliable
-CUST0212,Ibarra PLC,slow
-CUST0213,Arellano-Zuniga,reliable
-CUST0214,Mckee PLC,reliable
-CUST0215,"Bray, Mccullough and Guerrero",risky
-CUST0216,"Robbins, Smith and Oneill",risky
-CUST0217,Martinez-Bryan,reliable
-CUST0218,Stevens-Roman,slow
-CUST0219,Caldwell Inc,reliable
-CUST0220,Brown PLC,reliable
-CUST0221,James-Brown,risky
-CUST0222,Mclaughlin-Fischer,reliable
-CUST0223,Quinn and Sons,reliable
-CUST0224,"Valentine, Shaw and Ramirez",slow
-CUST0225,"Valdez, Martinez and Sanders",reliable
-CUST0226,"Odom, Franco and Allen",reliable
-CUST0227,Delgado-Jordan,reliable
-CUST0228,"Hartman, Graham and Spencer",slow
-CUST0229,Davis-Allen,reliable
-CUST0230,Floyd Inc,risky
-CUST0231,Gallegos-Hawkins,reliable
-CUST0232,Brown-Wallace,reliable
-CUST0233,"Carroll, Grant and Huffman",reliable
-CUST0234,"Dodson, Caldwell and Thomas",slow
-CUST0235,"Thompson, Goodman and Johnson",reliable
-CUST0236,"Ortiz, Miller and Frost",reliable
-CUST0237,"Cooper, Brown and Ellis",slow
-CUST0238,"Thomas, Bush and Bradley",reliable
-CUST0239,Pacheco LLC,reliable
-CUST0240,Eaton-Herrera,slow
-CUST0241,Hernandez Inc,reliable
-CUST0242,Jenkins-Mccarty,reliable
-CUST0243,"Ford, Riley and Carlson",reliable
-CUST0244,"Hawkins, Maldonado and James",risky
-CUST0245,Williams PLC,reliable
-CUST0246,Simon Ltd,slow
-CUST0247,"Curtis, Murphy and Green",reliable
-CUST0248,"Kim, Crawford and Burgess",reliable
-CUST0249,Gardner Group,slow
-CUST0250,Stark-Lee,reliable
-CUST0251,Weber-Herrera,reliable
-CUST0252,Thompson PLC,slow
-CUST0253,Cruz-Rivera,reliable
-CUST0254,"Duarte, Sims and Miller",reliable
-CUST0255,Padilla-Yu,risky
-CUST0256,"Cortez, Myers and Hoover",risky
-CUST0257,Harris-Johnson,reliable
-CUST0258,"Turner, Durham and Vasquez",reliable
-CUST0259,Martin-Osborne,reliable
-CUST0260,Taylor-Paul,risky
-CUST0261,"Miller, Green and Garcia",slow
-CUST0262,Robinson PLC,slow
-CUST0263,Walker-Hernandez,reliable
-CUST0264,Dean-White,reliable
-CUST0265,Frye Ltd,slow
-CUST0266,West Ltd,slow
-CUST0267,"Foley, Skinner and Paul",slow
-CUST0268,"Edwards, Torres and Payne",risky
-CUST0269,Poole and Sons,slow
-CUST0270,"Kerr, Conley and Allison",reliable
-CUST0271,"Wells, Roberson and Martin",slow
-CUST0272,"Walter, Barker and Lucas",reliable
-CUST0273,Monroe-Ramirez,slow
-CUST0274,"Lyons, Robinson and Schaefer",risky
-CUST0275,"Lee, Perez and Harvey",reliable
-CUST0276,Moon PLC,reliable
-CUST0277,"Beasley, Gonzalez and Flynn",reliable
-CUST0278,"Owens, Smith and Gallagher",reliable
-CUST0279,Cole-Long,reliable
-CUST0280,"Porter, Hughes and Robinson",slow
-CUST0281,Edwards LLC,slow
-CUST0282,Robertson LLC,reliable
-CUST0283,Burns-Strong,slow
-CUST0284,Owens LLC,reliable
-CUST0285,Meyer Group,reliable
-CUST0286,"Snyder, Bush and Foster",risky
-CUST0287,"Escobar, Jordan and Bell",slow
-CUST0288,"Mullins, Snyder and Bond",reliable
-CUST0289,"Cunningham, Anderson and Benton",reliable
-CUST0290,Garcia-Price,reliable
-CUST0291,Gilmore-Mendez,reliable
-CUST0292,Rose-Ford,slow
-CUST0293,Small Ltd,slow
-CUST0294,"Arellano, Hanson and Greene",reliable
-CUST0295,Porter-Roberts,slow
-CUST0296,Jones Ltd,reliable
-CUST0297,Olson and Sons,reliable
-CUST0298,Clark-Simmons,reliable
-CUST0299,"Ochoa, Davis and Hayden",reliable
-CUST0300,"Reynolds, Fisher and Thornton",slow
+customer_id,customer_name,profile
+CUST0001,Nichols-Douglas,slow
+CUST0002,Kline PLC,reliable
+CUST0003,"Dorsey, Moore and Smith",reliable
+CUST0004,"Johnson, Lewis and Phillips",reliable
+CUST0005,Hill-Soto,slow
+CUST0006,"Kelley, Stanton and Hobbs",slow
+CUST0007,"Wright, Sanford and Patel",slow
+CUST0008,Owens-Lawrence,reliable
+CUST0009,"Moss, Hernandez and Patterson",reliable
+CUST0010,Hudson and Sons,reliable
+CUST0011,Mcgee Group,reliable
+CUST0012,"Flores, Ayala and Suarez",reliable
+CUST0013,Morton and Sons,reliable
+CUST0014,Brown-Adkins,reliable
+CUST0015,Norman PLC,slow
+CUST0016,"Rodriguez, Long and Davila",reliable
+CUST0017,"Hall, Miller and Clark",reliable
+CUST0018,"Nguyen, Berg and Davidson",reliable
+CUST0019,Bennett-Alvarado,slow
+CUST0020,Yang LLC,reliable
+CUST0021,Brooks-Nixon,slow
+CUST0022,Curtis-Rogers,slow
+CUST0023,Thompson-King,reliable
+CUST0024,Fox-Ferguson,reliable
+CUST0025,Brennan-Cole,risky
+CUST0026,House-Hutchinson,reliable
+CUST0027,Figueroa-Boyd,reliable
+CUST0028,Molina-Bates,reliable
+CUST0029,Lopez Ltd,slow
+CUST0030,Wheeler PLC,slow
+CUST0031,"Calderon, Hartman and Jacobson",slow
+CUST0032,"Harper, Hart and Jones",slow
+CUST0033,Peters and Sons,reliable
+CUST0034,Johnson-Morales,risky
+CUST0035,"Simon, Harper and Nichols",reliable
+CUST0036,Garcia-Pope,reliable
+CUST0037,Wagner Ltd,slow
+CUST0038,"Perkins, Hendrix and Phillips",slow
+CUST0039,Lutz-Mcdonald,slow
+CUST0040,Burnett-Williams,reliable
+CUST0041,King LLC,slow
+CUST0042,Reid-Davis,reliable
+CUST0043,Grimes-Jones,reliable
+CUST0044,"Mcclain, Baker and Hoffman",reliable
+CUST0045,Guerrero and Sons,reliable
+CUST0046,Warner-Parks,reliable
+CUST0047,Davis and Sons,reliable
+CUST0048,Jones and Sons,reliable
+CUST0049,Hodge Inc,slow
+CUST0050,"Walker, Carter and Smith",reliable
+CUST0051,Day Inc,reliable
+CUST0052,"Walker, Lee and Fisher",reliable
+CUST0053,Braun-Phillips,reliable
+CUST0054,Ray-Cole,risky
+CUST0055,Medina Group,slow
+CUST0056,Griffin and Sons,slow
+CUST0057,Carter-Campbell,reliable
+CUST0058,Jensen-Davis,slow
+CUST0059,Cole and Sons,reliable
+CUST0060,Lynn Group,reliable
+CUST0061,Anderson-Hart,risky
+CUST0062,"Mahoney, Gonzalez and Cruz",slow
+CUST0063,Leon-Watson,reliable
+CUST0064,Pittman Ltd,slow
+CUST0065,"Jackson, Freeman and Brown",slow
+CUST0066,"Reed, Velasquez and Larson",slow
+CUST0067,"Villarreal, Allen and Duncan",reliable
+CUST0068,White-Wood,reliable
+CUST0069,Parker LLC,reliable
+CUST0070,"Bean, Guzman and Cortez",reliable
+CUST0071,Barnett and Sons,reliable
+CUST0072,"Robinson, Colon and Trujillo",risky
+CUST0073,Diaz-Banks,slow
+CUST0074,"Franco, Oconnor and Larsen",reliable
+CUST0075,Blankenship LLC,slow
+CUST0076,Farley-Rodriguez,reliable
+CUST0077,Silva-Oconnell,risky
+CUST0078,"Ferguson, Armstrong and Cowan",reliable
+CUST0079,Hill-Gray,reliable
+CUST0080,Camacho-Bennett,reliable
+CUST0081,Sherman-Johnson,reliable
+CUST0082,Moore-Wright,reliable
+CUST0083,"Richmond, Long and Hale",reliable
+CUST0084,Clark-Bernard,slow
+CUST0085,"Rodriguez, Davis and Knight",reliable
+CUST0086,Quinn-Torres,reliable
+CUST0087,Barnes PLC,risky
+CUST0088,Hansen LLC,reliable
+CUST0089,Rose Inc,reliable
+CUST0090,Hamilton-Stanley,reliable
+CUST0091,"Richardson, Turner and Fox",reliable
+CUST0092,"Duncan, Anderson and Guzman",slow
+CUST0093,"Garcia, Rodriguez and Cruz",slow
+CUST0094,Harris-Garcia,reliable
+CUST0095,"Raymond, Bruce and Martinez",reliable
+CUST0096,"Smith, Diaz and Mitchell",reliable
+CUST0097,Davis-Weeks,risky
+CUST0098,Anderson-Henson,reliable
+CUST0099,"Kirk, Hatfield and Graham",risky
+CUST0100,Butler-Clark,slow
+CUST0101,"Rowland, Larson and Lam",reliable
+CUST0102,Reynolds-White,slow
+CUST0103,Mooney-Stone,slow
+CUST0104,Myers-Jones,reliable
+CUST0105,Castaneda-Williams,reliable
+CUST0106,Campbell-Miller,slow
+CUST0107,Mcgrath LLC,reliable
+CUST0108,Stone and Sons,reliable
+CUST0109,Anderson LLC,reliable
+CUST0110,Campbell-Smith,risky
+CUST0111,"West, Barrett and Horton",slow
+CUST0112,Combs-Guerrero,reliable
+CUST0113,Johnson PLC,reliable
+CUST0114,Thompson-Estrada,reliable
+CUST0115,"Flores, Jacobs and Ortiz",risky
+CUST0116,"Mccarthy, Donaldson and Fox",slow
+CUST0117,Warren-Morgan,reliable
+CUST0118,Calderon-White,slow
+CUST0119,"Smith, Johnson and Carpenter",slow
+CUST0120,Rodriguez Group,reliable
+CUST0121,Padilla-Rios,slow
+CUST0122,Bryant PLC,reliable
+CUST0123,Figueroa-Brooks,slow
+CUST0124,"Soto, Freeman and Floyd",reliable
+CUST0125,Jones and Sons,reliable
+CUST0126,Paul-Taylor,reliable
+CUST0127,"Ho, Anderson and Dodson",reliable
+CUST0128,Morales Ltd,risky
+CUST0129,"Allen, Holland and Ramirez",slow
+CUST0130,Flores-Nguyen,slow
+CUST0131,Nelson-Lopez,reliable
+CUST0132,Arnold-Logan,reliable
+CUST0133,Taylor-Carter,slow
+CUST0134,Gomez-Powell,risky
+CUST0135,"Graham, Kramer and Baker",reliable
+CUST0136,Waters PLC,reliable
+CUST0137,"Cobb, Lara and Roberson",reliable
+CUST0138,Medina-Price,slow
+CUST0139,"Garcia, Andersen and Clark",slow
+CUST0140,Salazar Ltd,reliable
+CUST0141,Cruz Inc,reliable
+CUST0142,Rowe Group,reliable
+CUST0143,Williams-George,reliable
+CUST0144,Walls-Jacobs,slow
+CUST0145,"Porter, Williamson and Ward",reliable
+CUST0146,Garcia and Sons,reliable
+CUST0147,Phillips-Harmon,reliable
+CUST0148,"Case, Smith and Marquez",slow
+CUST0149,"Johnson, Huynh and Price",reliable
+CUST0150,Jenkins-Valencia,reliable
+CUST0151,Fox LLC,risky
+CUST0152,"Hogan, Norris and Brown",slow
+CUST0153,"Hernandez, Clayton and Hines",reliable
+CUST0154,Lozano PLC,reliable
+CUST0155,Rangel-Bailey,reliable
+CUST0156,"Ramos, Snyder and Payne",reliable
+CUST0157,"Hanson, Abbott and Cruz",reliable
+CUST0158,Bush PLC,reliable
+CUST0159,Greene Group,reliable
+CUST0160,Smith LLC,reliable
+CUST0161,"Miller, Mcmahon and Gutierrez",reliable
+CUST0162,Williams and Sons,slow
+CUST0163,"Flores, Mcdonald and Garcia",reliable
+CUST0164,Williams-Salas,risky
+CUST0165,Mata-Rocha,slow
+CUST0166,Wright PLC,reliable
+CUST0167,Doyle-Bryant,reliable
+CUST0168,Blevins-Reynolds,slow
+CUST0169,Stewart-Atkins,reliable
+CUST0170,Henderson-Hernandez,reliable
+CUST0171,Frey Ltd,risky
+CUST0172,"Baldwin, Haynes and Landry",reliable
+CUST0173,"Mays, Key and Espinoza",reliable
+CUST0174,Miller PLC,slow
+CUST0175,"Torres, Perry and Porter",slow
+CUST0176,Sexton-Cline,reliable
+CUST0177,Miller-Ramirez,reliable
+CUST0178,Cantu-Thompson,reliable
+CUST0179,Schwartz-Sanchez,reliable
+CUST0180,Hopkins Group,reliable
+CUST0181,"Campbell, Evans and Boyd",slow
+CUST0182,Anthony Group,slow
+CUST0183,"Cooley, Sheppard and Jennings",risky
+CUST0184,"Adams, Klein and White",reliable
+CUST0185,"Gonzalez, Sexton and Davis",reliable
+CUST0186,Key Inc,reliable
+CUST0187,Mcneil-Hansen,slow
+CUST0188,Riggs-Elliott,reliable
+CUST0189,Smith Group,reliable
+CUST0190,Ramirez LLC,reliable
+CUST0191,Smith-Copeland,reliable
+CUST0192,"Kennedy, Moreno and Johnson",reliable
+CUST0193,Parker Group,reliable
+CUST0194,Mccoy PLC,risky
+CUST0195,"Romero, Kerr and Brooks",reliable
+CUST0196,Gonzalez-Hanson,slow
+CUST0197,Allen-King,reliable
+CUST0198,Ware-Cooper,reliable
+CUST0199,Newton PLC,risky
+CUST0200,Best Ltd,slow
+CUST0201,Hartman-Bailey,risky
+CUST0202,Farmer-Jenkins,risky
+CUST0203,Hampton-Riley,slow
+CUST0204,Schneider LLC,reliable
+CUST0205,"Morales, Lopez and Mclaughlin",reliable
+CUST0206,"Ayers, Gordon and Martinez",reliable
+CUST0207,"Montes, Payne and Smith",reliable
+CUST0208,Thompson Group,reliable
+CUST0209,"Coffey, Barnes and Singleton",reliable
+CUST0210,"Pierce, Campbell and Johnson",risky
+CUST0211,Andrade LLC,reliable
+CUST0212,"Lewis, Bailey and Cortez",slow
+CUST0213,Love Ltd,reliable
+CUST0214,Baker-Acosta,reliable
+CUST0215,"Wilson, Beck and Moyer",risky
+CUST0216,Aguilar Group,risky
+CUST0217,"Chan, Thompson and Sweeney",reliable
+CUST0218,"Woodard, Bowen and Calhoun",slow
+CUST0219,"Fernandez, Garcia and Paul",reliable
+CUST0220,Cannon-Castro,reliable
+CUST0221,Ramirez LLC,risky
+CUST0222,"Gomez, Sanders and Wilson",reliable
+CUST0223,"Castillo, Sanchez and Morse",reliable
+CUST0224,Brown-White,slow
+CUST0225,Hancock PLC,reliable
+CUST0226,"Mcmahon, Norris and Martin",reliable
+CUST0227,Guerrero-Harris,reliable
+CUST0228,Bridges PLC,slow
+CUST0229,Larson-Weaver,reliable
+CUST0230,Bartlett and Sons,risky
+CUST0231,Mclaughlin-Fitzgerald,reliable
+CUST0232,Mclean-Davis,reliable
+CUST0233,Thompson PLC,reliable
+CUST0234,Logan-Lopez,slow
+CUST0235,Singleton Inc,reliable
+CUST0236,Reed-Paul,reliable
+CUST0237,Crawford Group,slow
+CUST0238,Guerra Inc,reliable
+CUST0239,Gomez Inc,reliable
+CUST0240,Johnson-Paul,slow
+CUST0241,Bridges-Martinez,reliable
+CUST0242,Patterson-Dean,reliable
+CUST0243,Murray-White,reliable
+CUST0244,Jones PLC,risky
+CUST0245,Williams Ltd,reliable
+CUST0246,"Thornton, Chapman and Martinez",slow
+CUST0247,Garrison LLC,reliable
+CUST0248,"Wood, Castillo and Johnson",reliable
+CUST0249,Hale PLC,slow
+CUST0250,Wilson-Robinson,reliable
+CUST0251,Johnson-Curtis,reliable
+CUST0252,"Singleton, Hunt and Aguilar",slow
+CUST0253,"Bradley, Vasquez and Hawkins",reliable
+CUST0254,"Williams, Holmes and Crawford",reliable
+CUST0255,Hamilton LLC,risky
+CUST0256,Gordon-Obrien,risky
+CUST0257,Roy and Sons,reliable
+CUST0258,Powell Group,reliable
+CUST0259,Davis Group,reliable
+CUST0260,Armstrong Inc,risky
+CUST0261,Mccarthy Group,slow
+CUST0262,Jones Group,slow
+CUST0263,King-Daugherty,reliable
+CUST0264,Berg-Jones,reliable
+CUST0265,Farmer Ltd,slow
+CUST0266,"Barnes, Hunt and Acosta",slow
+CUST0267,"Black, Barrera and Jimenez",slow
+CUST0268,Salazar and Sons,risky
+CUST0269,"Olson, Manning and Williams",slow
+CUST0270,"Taylor, Meadows and Davis",reliable
+CUST0271,Smith Ltd,slow
+CUST0272,"Hutchinson, Young and Perez",reliable
+CUST0273,"Johnson, Miller and Garcia",slow
+CUST0274,"Morse, Foster and Lee",risky
+CUST0275,Mcdonald-Jones,reliable
+CUST0276,Perkins Ltd,reliable
+CUST0277,Nguyen LLC,reliable
+CUST0278,"Reed, Reynolds and Young",reliable
+CUST0279,Carr PLC,reliable
+CUST0280,"Butler, Blankenship and Baker",slow
+CUST0281,"Cannon, Schneider and Cook",slow
+CUST0282,"Moore, Scott and Smith",reliable
+CUST0283,Garcia-Mcpherson,slow
+CUST0284,"Hanson, Rodriguez and Shields",reliable
+CUST0285,Mann LLC,reliable
+CUST0286,Nicholson Group,risky
+CUST0287,Shaw and Sons,slow
+CUST0288,Roberts-Kelley,reliable
+CUST0289,Hernandez and Sons,reliable
+CUST0290,Robinson LLC,reliable
+CUST0291,Matthews-Franklin,reliable
+CUST0292,Rodriguez Group,slow
+CUST0293,"Oliver, Huffman and Williams",slow
+CUST0294,Daniels LLC,reliable
+CUST0295,"Bruce, Robinson and Smith",slow
+CUST0296,"Anderson, Barron and Schaefer",reliable
+CUST0297,"Olson, Shelton and Hansen",reliable
+CUST0298,Rhodes Inc,reliable
+CUST0299,Sullivan and Sons,reliable
+CUST0300,Williams Group,slow
