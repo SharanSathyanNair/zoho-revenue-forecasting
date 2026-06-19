@@ -16,9 +16,7 @@ feature_cols = ["lag_1", "lag_2", "lag_4", "lag_8", "lag_12", "lag_52",
                  "week_of_year", "month", "quarter", "is_month_end",
                  "is_quarter_end", "is_december", "is_january",
                  "weeks_elapsed", "wow_change", "revenue_vs_4w_avg",
-                 "revenue_pct_change_4", "revenue_pct_change_52",
-                 "active_customer_count", "total_open_balance",
-                 "invoices_due_next_4_weeks"]
+                 "revenue_pct_change_4", "revenue_pct_change_52"]
 
 X = df[feature_cols]
 y = df["revenue"]
@@ -60,14 +58,12 @@ print("\nBest structural parameters found:")
 print(best_params)
 print(f"Best cross-validated MAPE: {-grid_search.best_score_*100:.2f}%")
 
-#______showing top 5 combinations for transparency__________
 results_df = pd.DataFrame(grid_search.cv_results_)
 results_df["mean_test_mape"] = -results_df["mean_test_score"] * 100
 top5 = results_df.sort_values("mean_test_mape").head(5)
 print("\nTop 5 parameter combinations (for reference):")
 print(top5[["params", "mean_test_mape"]].to_string(index=False))
 
-#______STEP 2: early stopping to find optimal n_estimators__________
 print("\n" + "="*60)
 print("STEP 2: Finding optimal n_estimators with early stopping...")
 print("="*60)
@@ -100,7 +96,6 @@ optimal_n_estimators = final_model.best_iteration
 print(f"\nOptimal number of trees: {optimal_n_estimators}")
 print(f"Validation MAE at that point: {final_model.best_score:.2f}")
 
-#______FINAL RECOMMENDED CONFIGURATION__________
 print("\n" + "="*60)
 print("FINAL RECOMMENDED XGBOOST CONFIGURATION")
 print("="*60)
@@ -114,5 +109,4 @@ model = xgb.XGBRegressor(
     random_state=42
 )
 """)
-print("Copy this block into xgboost_model.py whenever you rerun this tuning script.")
 print("="*60)
