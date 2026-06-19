@@ -2,8 +2,9 @@
 import pandas as pd
 import numpy as np
 import xgboost as xgb
-from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
-from sklearn.metrics import make_scorer, mean_absolute_percentage_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+import matplotlib.pyplot as plt
+import shap
 
 #______loading featured weekly revenue data__________
 df = pd.read_csv("data/featured_weekly_revenue.csv")
@@ -16,105 +17,64 @@ feature_cols = ["lag_1", "lag_2", "lag_4", "lag_8", "lag_12", "lag_52",
                  "week_of_year", "month", "quarter", "is_month_end",
                  "is_quarter_end", "is_december", "is_january",
                  "weeks_elapsed", "wow_change", "revenue_vs_4w_avg",
-                 "revenue_pct_change_4", "revenue_pct_change_52"]
+                 "revenue_pct_change_4", "revenue_pct_change_52",
+                 "active_customer_count", "total_open_balance",
+                 "invoices_due_next_4_weeks"]
 
 X = df[feature_cols]
 y = df["revenue"]
 
-#______STEP 1: grid search for structural parameters__________
-# searches learning_rate, max_depth, subsample, colsample_bytree
-# using walk-forward time-series cross-validation, never a single fixed split
-param_grid = {
-    "learning_rate": [0.01, 0.03, 0.05, 0.1],
-    "max_depth": [3, 4, 5],
-    "subsample": [0.7, 0.8, 0.9],
-    "colsample_bytree": [0.7, 0.8, 0.9]
-}
+#______time-aware train/test split__________
+train_size = int(len(df) * 0.8)
 
-tscv = TimeSeriesSplit(n_splits=5)
-mape_scorer = make_scorer(mean_absolute_percentage_error, greater_is_better=False)
+X_train = X[:train_size]
+X_test = X[train_size:]
+y_train = y[:train_size]
+y_test = y[train_size:]
+y_test = y_test.reset_index(drop=True)
 
-base_model = xgb.XGBRegressor(
-    n_estimators=1000,
-    random_state=42,
-    eval_metric="mae"
-)
-
-print("="*60)
-print("STEP 1: Searching for best structural parameters...")
-print("="*60)
-
-grid_search = GridSearchCV(
-    estimator=base_model,
-    param_grid=param_grid,
-    cv=tscv,
-    scoring=mape_scorer,
-    n_jobs=-1,
-    verbose=1
-)
-grid_search.fit(X, y)
-
-best_params = grid_search.best_params_
-
-print("\nBest structural parameters found:")
-print(best_params)
-print(f"Best cross-validated MAPE: {-grid_search.best_score_*100:.2f}%")
-
-#______showing top 5 combinations for transparency__________
-results_df = pd.DataFrame(grid_search.cv_results_)
-results_df["mean_test_mape"] = -results_df["mean_test_score"] * 100
-top5 = results_df.sort_values("mean_test_mape").head(5)
-print("\nTop 5 parameter combinations (for reference):")
-print(top5[["params", "mean_test_mape"]].to_string(index=False))
-
-#______STEP 2: early stopping to find optimal n_estimators__________
-# uses the winning structural parameters from Step 1, then finds exactly
-# how many trees are needed before validation performance plateaus
-print("\n" + "="*60)
-print("STEP 2: Finding optimal n_estimators with early stopping...")
-print("="*60)
-
-split_point = int(len(X) * 0.85)
-X_train_es = X[:split_point]
-X_val_es = X[split_point:]
-y_train_es = y[:split_point]
-y_val_es = y[split_point:]
-
-final_model = xgb.XGBRegressor(
-    n_estimators=1000,
-    learning_rate=best_params["learning_rate"],
-    max_depth=best_params["max_depth"],
-    subsample=best_params["subsample"],
-    colsample_bytree=best_params["colsample_bytree"],
-    random_state=42,
-    eval_metric="mae",
-    early_stopping_rounds=20
-)
-
-final_model.fit(
-    X_train_es, y_train_es,
-    eval_set=[(X_val_es, y_val_es)],
-    verbose=False
-)
-
-optimal_n_estimators = final_model.best_iteration
-
-print(f"\nOptimal number of trees: {optimal_n_estimators}")
-print(f"Validation MAE at that point: {final_model.best_score:.2f}")
-
-#______FINAL RECOMMENDED CONFIGURATION__________
-print("\n" + "="*60)
-print("FINAL RECOMMENDED XGBOOST CONFIGURATION")
-print("="*60)
-print(f"""
+#______training XGBoost model with previously tuned parameters__________
 model = xgb.XGBRegressor(
-    n_estimators={optimal_n_estimators},
-    learning_rate={best_params['learning_rate']},
-    max_depth={best_params['max_depth']},
-    subsample={best_params['subsample']},
-    colsample_bytree={best_params['colsample_bytree']},
+    n_estimators=575,
+    max_depth=3,
+    learning_rate=0.03,
+    subsample=0.7,
+    colsample_bytree=0.9,
     random_state=42
 )
-""")
-print("Copy this block into xgboost_model.py whenever you rerun this tuning script.")
-print("="*60)
+
+model.fit(X_train, y_train)
+
+#______generating predictions on test set__________
+y_pred = model.predict(X_test)
+
+#______calculating evaluation metrics__________
+mae = mean_absolute_error(y_test, y_pred)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+mape = np.mean(np.abs((y_test.values - y_pred) / y_test.values)) * 100
+
+print(f"MAE: {mae:.2f}")
+print(f"RMSE: {rmse:.2f}")
+print(f"MAPE: {mape:.2f}%")
+
+#______plotting actual vs predicted__________
+test_dates = df["week_start"][train_size:].reset_index(drop=True)
+
+plt.figure(figsize=(12, 6))
+plt.plot(test_dates, y_test.values, label="Actual", color="black")
+plt.plot(test_dates, y_pred, label="XGBoost Forecast (New Features)", color="blue")
+plt.legend()
+plt.title("XGBoost (New Features): Actual vs Predicted Revenue")
+plt.xlabel("Week")
+plt.ylabel("Revenue")
+plt.savefig("outputs/xgboost_forecast_newfeatures.png", bbox_inches="tight")
+plt.show()
+
+#______SHAP explainability__________
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+#______summary plot — overall feature importance__________
+shap.summary_plot(shap_values, X_test, show=False)
+plt.savefig("outputs/shap_summary_newfeatures.png", bbox_inches="tight")
+plt.show()

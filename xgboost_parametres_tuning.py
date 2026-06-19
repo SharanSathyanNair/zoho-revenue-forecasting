@@ -16,14 +16,14 @@ feature_cols = ["lag_1", "lag_2", "lag_4", "lag_8", "lag_12", "lag_52",
                  "week_of_year", "month", "quarter", "is_month_end",
                  "is_quarter_end", "is_december", "is_january",
                  "weeks_elapsed", "wow_change", "revenue_vs_4w_avg",
-                 "revenue_pct_change_4", "revenue_pct_change_52"]
+                 "revenue_pct_change_4", "revenue_pct_change_52",
+                 "active_customer_count", "total_open_balance",
+                 "invoices_due_next_4_weeks"]
 
 X = df[feature_cols]
 y = df["revenue"]
 
 #______STEP 1: grid search for structural parameters__________
-# searches learning_rate, max_depth, subsample, colsample_bytree
-# using walk-forward time-series cross-validation, never a single fixed split
 param_grid = {
     "learning_rate": [0.01, 0.03, 0.05, 0.1],
     "max_depth": [3, 4, 5],
@@ -68,8 +68,6 @@ print("\nTop 5 parameter combinations (for reference):")
 print(top5[["params", "mean_test_mape"]].to_string(index=False))
 
 #______STEP 2: early stopping to find optimal n_estimators__________
-# uses the winning structural parameters from Step 1, then finds exactly
-# how many trees are needed before validation performance plateaus
 print("\n" + "="*60)
 print("STEP 2: Finding optimal n_estimators with early stopping...")
 print("="*60)
