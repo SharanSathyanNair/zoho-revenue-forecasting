@@ -21,7 +21,18 @@ feature_cols = ["lag_1", "lag_2", "lag_4", "lag_8", "lag_12", "lag_52",
 X = df[feature_cols]
 y = df["revenue"]
 
-#______STEP 1: grid search for structural parameters__________
+#______STEP 0: carve out the final test set FIRST — nothing below this line
+#______touches X_test/y_test until the very last evaluation__________
+test_size = int(len(df) * 0.20)
+train_pool_size = len(df) - test_size
+
+X_pool, X_test = X[:train_pool_size], X[train_pool_size:]
+y_pool, y_test = y[:train_pool_size], y[train_pool_size:]
+y_test = y_test.reset_index(drop=True)
+
+print(f"Train+val pool: {len(X_pool)} rows  |  Held-out test: {len(X_test)} rows (never touched until the end)")
+
+#______STEP 1: grid search for structural parameters, using ONLY the pool__________
 param_grid = {
     "learning_rate": [0.01, 0.03, 0.05, 0.1],
     "max_depth": [3, 4, 5],
@@ -38,8 +49,8 @@ base_model = xgb.XGBRegressor(
     eval_metric="mae"
 )
 
-print("="*60)
-print("STEP 1: Searching for best structural parameters...")
+print("\n" + "="*60)
+print("STEP 1: Searching for best structural parameters (on pool only)...")
 print("="*60)
 
 grid_search = GridSearchCV(
@@ -50,29 +61,26 @@ grid_search = GridSearchCV(
     n_jobs=-1,
     verbose=1
 )
-grid_search.fit(X, y)
+grid_search.fit(X_pool, y_pool)
 
 best_params = grid_search.best_params_
 
 print("\nBest structural parameters found:")
 print(best_params)
-print(f"Best cross-validated MAPE: {-grid_search.best_score_*100:.2f}%")
+print(f"Best cross-validated MAPE (pool only): {-grid_search.best_score_*100:.2f}%")
 
-results_df = pd.DataFrame(grid_search.cv_results_)
-results_df["mean_test_mape"] = -results_df["mean_test_score"] * 100
-top5 = results_df.sort_values("mean_test_mape").head(5)
-print("\nTop 5 parameter combinations (for reference):")
-print(top5[["params", "mean_test_mape"]].to_string(index=False))
-
+#______STEP 2: early stopping, using a slice of the POOL — still never touches X_test__________
 print("\n" + "="*60)
-print("STEP 2: Finding optimal n_estimators with early stopping...")
+print("STEP 2: Finding optimal n_estimators with early stopping (within pool)...")
 print("="*60)
 
-split_point = int(len(X) * 0.85)
-X_train_es = X[:split_point]
-X_val_es = X[split_point:]
-y_train_es = y[:split_point]
-y_val_es = y[split_point:]
+es_split_point = int(len(X_pool) * 0.85)
+X_train_es = X_pool[:es_split_point]
+X_val_es = X_pool[es_split_point:]
+y_train_es = y_pool[:es_split_point]
+y_val_es = y_pool[es_split_point:]
+
+print(f"Early-stopping train: {len(X_train_es)} rows | val: {len(X_val_es)} rows (both inside the pool, test untouched)")
 
 final_model = xgb.XGBRegressor(
     n_estimators=1000,
@@ -91,10 +99,31 @@ final_model.fit(
     verbose=False
 )
 
-optimal_n_estimators = final_model.best_iteration
+#______FIX: best_iteration is 0-indexed, so the tree count is +1__________
+optimal_n_estimators = final_model.best_iteration + 1
 
-print(f"\nOptimal number of trees: {optimal_n_estimators}")
+print(f"\nOptimal number of trees: {optimal_n_estimators} (best_iteration={final_model.best_iteration} + 1)")
 print(f"Validation MAE at that point: {final_model.best_score:.2f}")
+
+#______STEP 3: refit on the FULL pool with final params, then score ONCE on the
+#______untouched test set — this is the only honest, unbiased number__________
+print("\n" + "="*60)
+print("STEP 3: Refitting on full pool, scoring once on held-out test...")
+print("="*60)
+
+production_model = xgb.XGBRegressor(
+    n_estimators=optimal_n_estimators,
+    learning_rate=best_params["learning_rate"],
+    max_depth=best_params["max_depth"],
+    subsample=best_params["subsample"],
+    colsample_bytree=best_params["colsample_bytree"],
+    random_state=42
+)
+production_model.fit(X_pool, y_pool)
+
+y_pred = production_model.predict(X_test)
+final_mape = np.mean(np.abs((y_test.values - y_pred) / y_test.values)) * 100
+print(f"\nFinal, never-touched-before MAPE on the true test set: {final_mape:.2f}%")
 
 print("\n" + "="*60)
 print("FINAL RECOMMENDED XGBOOST CONFIGURATION")
