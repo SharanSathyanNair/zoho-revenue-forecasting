@@ -77,6 +77,47 @@ shap.summary_plot(shap_values, X_test, show=False)
 plt.savefig("outputs/shap_summary.png", bbox_inches="tight")
 plt.show()
 
+#______waterfall plot — breakdown for one specific week__________
+# shap_values from TreeExplainer is a plain numpy array
+# shap.waterfall_plot needs a shap.Explanation object — we build it manually
+
+# pick which test week to explain — week index 0 = first test week
+# change this number to explain any other week (0 to len(X_test)-1)
+WEEK_TO_EXPLAIN = 0
+
+# build the Explanation object manually
+# shap_values[WEEK_TO_EXPLAIN] = array of 24 SHAP values for that week
+# explainer.expected_value = the baseline (average prediction across training)
+# X_test.iloc[WEEK_TO_EXPLAIN] = the actual feature values for that week
+explanation = shap.Explanation(
+    values=shap_values[WEEK_TO_EXPLAIN],
+    base_values=explainer.expected_value,
+    data=X_test.iloc[WEEK_TO_EXPLAIN].values,
+    feature_names=feature_cols
+)
+
+# get the actual date of this week for the title
+week_date = df["week_start"][train_size:].reset_index(drop=True)[WEEK_TO_EXPLAIN]
+actual_rev = y_test[WEEK_TO_EXPLAIN]
+predicted_rev = y_pred[WEEK_TO_EXPLAIN]
+
+plt.figure()
+shap.plots.waterfall(explanation, show=False)
+plt.title(
+    f"SHAP Waterfall — Week of {week_date.date()}\n"
+    f"Actual: {actual_rev:,.0f}  |  Predicted: {predicted_rev:,.0f}",
+    fontsize=10
+)
+plt.tight_layout()
+plt.savefig("outputs/shap_waterfall.png", bbox_inches="tight")
+plt.show()
+
+print(f"\nWaterfall explained for: week of {week_date.date()}")
+print(f"Baseline (avg prediction): {explainer.expected_value:,.0f}")
+print(f"Final prediction:          {predicted_rev:,.0f}")
+print(f"Actual revenue:            {actual_rev:,.0f}")
+print(f"Difference (pred-actual):  {predicted_rev - actual_rev:,.0f}")
+
 #______future forecasting — recursive walk-forward__________
 
 #______load the full featured dataset__________
@@ -185,7 +226,6 @@ for week_num in range(1, WEEKS_AHEAD + 1):
     future_dates.append(next_date)
 
     #______feed noisy version back for next iteration__________
-    # noisy version makes lag_1 next week behave like real data
     new_row     = pd.DataFrame([{"week_start": next_date, "revenue": predicted_revenue_noisy}])
     seed_window = pd.concat([seed_window, new_row], ignore_index=True)
 
