@@ -1,68 +1,235 @@
-#______importing libraries__________
-import pandas as pd
-import numpy as np
-from prophet import Prophet  # Prophet's forecasting model class
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+import warnings
+from pathlib import Path
+
+import joblib
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
-#______loading weekly revenue data__________
-# Prophet does NOT use engineered features (lags, rolling stats, calendar flags)
-# it only needs the raw date and revenue columns, so we load weekly_revenue.csv, not the featured one
-df = pd.read_csv("data/weekly_revenue.csv")
-df["week_start"] = pd.to_datetime(df["week_start"])
-
-#______preparing data in Prophet's required format__________
-# Prophet requires exactly two columns named "ds" (date) and "y" (the value to predict)
-# this is a strict naming rule, the library will not work with any other column names
-prophet_df = df.rename(columns={"week_start": "ds", "revenue": "y"})
-
-#______time-aware train/test split__________
-train_size = int(len(prophet_df) * 0.8)  # 80% of weeks for training
-train = prophet_df[:train_size]           # first 80% chronologically
-test = prophet_df[train_size:]            # last 20% chronologically, never shuffled
-
-#______training Prophet model__________
-model = Prophet(
-    yearly_seasonality=True,   # let Prophet model annual seasonal patterns
-    weekly_seasonality=False,  # turn off, since our data is already weekly aggregated, no daily pattern exists within a week
-    changepoint_prior_scale=0.05,  # default flexibility for trend changepoints, higher = more flexible trend
-    seasonality_mode="additive"
+from prophet import Prophet
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_absolute_percentage_error,
+    mean_squared_error,
 )
-model.fit(train)  # train Prophet on the training portion only
 
-#______generating forecast for test period__________
-future = model.make_future_dataframe(periods=len(test), freq="W-MON")  # creates future dates to predict, matching test set length and weekly frequency
-forecast = model.predict(future)  # generates yhat, yhat_lower, yhat_upper for every date including training dates
+warnings.filterwarnings("ignore")
 
-#______extracting only the test period predictions__________
-forecast_test = forecast.tail(len(test))  # the last N rows of forecast correspond to our test period
+# ==========================================================
+# Configuration
+# ==========================================================
 
-#______calculating evaluation metrics__________
-y_true = test["y"].values
-y_pred = forecast_test["yhat"].values
+INPUT_FILE = "data/model_ready_data.csv"
 
-mae = mean_absolute_error(y_true, y_pred)
-rmse = np.sqrt(mean_squared_error(y_true, y_pred))
-mape = np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+MODEL_DIR = "models"
+OUTPUT_DIR = "outputs"
 
-print(f"MAE: {mae:.2f}")
-print(f"RMSE: {rmse:.2f}")
-print(f"MAPE: {mape:.2f}%")
+MODEL_NAME = "prophet_model.pkl"
+PREDICTION_FILE = "prophet_predictions.csv"
 
-#______plotting actual vs predicted with confidence interval__________
-plt.figure(figsize=(12, 6))
-plt.plot(test["ds"], y_true, label="Actual", color="black")
-plt.plot(test["ds"], y_pred, label="Prophet Forecast", color="green")
-plt.fill_between(test["ds"], forecast_test["yhat_lower"], forecast_test["yhat_upper"],
-                  color="green", alpha=0.2, label="Confidence Interval")  # shaded band showing uncertainty range
-plt.legend()
-plt.title("Prophet: Actual vs Predicted Revenue")
-plt.xlabel("Week")
-plt.ylabel("Revenue")
-plt.savefig("outputs/prophet_forecast.png", bbox_inches="tight")
-plt.show()
+FORECAST_HORIZON = 12
 
-#______plotting Prophet's own decomposition__________
-fig = model.plot_components(forecast)  # built-in Prophet plot showing trend and yearly seasonality separately
-plt.savefig("outputs/prophet_components.png", bbox_inches="tight")
-plt.show()
+
+# ==========================================================
+# Create Directories
+# ==========================================================
+
+
+def create_directories():
+    Path(MODEL_DIR).mkdir(exist_ok=True)
+    Path(OUTPUT_DIR).mkdir(exist_ok=True)
+
+
+# ==========================================================
+# Load Data
+# ==========================================================
+
+
+def load_data():
+    df = pd.read_csv(INPUT_FILE, parse_dates=["week"])
+    df = df.sort_values("week").reset_index(drop=True)
+    return df
+
+
+# ==========================================================
+# Train Test Split
+# ==========================================================
+
+
+def train_test_split(df):
+    train = df.iloc[:-FORECAST_HORIZON].copy()
+    test = df.iloc[-FORECAST_HORIZON:].copy()
+    return train, test
+
+
+# ==========================================================
+# Prepare Prophet Data
+# ==========================================================
+
+
+def prepare_prophet_data(df):
+    prophet_df = df[["week", "weekly_revenue"]].copy()
+    prophet_df.columns = ["ds", "y"]
+    return prophet_df
+
+
+# ==========================================================
+# Train Model
+# ==========================================================
+
+
+def train_prophet(train_df):
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=False,
+        daily_seasonality=False,
+        seasonality_mode="additive",
+    )
+
+    model.fit(train_df)
+
+    return model
+
+
+# ==========================================================
+# Prediction
+# ==========================================================
+
+
+def make_predictions(model, test_df):
+    future = test_df[["ds"]].copy()
+    forecast = model.predict(future)
+    predictions = forecast["yhat"].values
+
+    return predictions, forecast
+
+
+# ==========================================================
+# Evaluation
+# ==========================================================
+
+
+def evaluate_model(actual, predicted):
+    mae = mean_absolute_error(actual, predicted)
+    rmse = np.sqrt(mean_squared_error(actual, predicted))
+    mape = mean_absolute_percentage_error(actual, predicted) * 100
+    return mae, rmse, mape
+
+
+# ==========================================================
+# Save Model
+# ==========================================================
+
+
+def save_model(model):
+    model_path = Path(MODEL_DIR) / MODEL_NAME
+    joblib.dump(model, model_path)
+    return model_path
+
+
+# ==========================================================
+# Save Predictions
+# ==========================================================
+
+
+def save_predictions(test_df, predictions):
+    prediction_df = pd.DataFrame(
+        {
+            "week": test_df["ds"],
+            "actual": test_df["y"],
+            "predicted": predictions,
+        }
+    )
+
+    output_path = Path(OUTPUT_DIR) / PREDICTION_FILE
+    prediction_df.to_csv(output_path, index=False)
+
+    return prediction_df, output_path
+
+
+# ==========================================================
+# Plot Results
+# ==========================================================
+
+
+def plot_results(train_df, test_df, predictions):
+    plt.figure(figsize=(14, 6))
+
+    plt.plot(train_df["ds"], train_df["y"], label="Train")
+    plt.plot(test_df["ds"], test_df["y"], label="Actual")
+    plt.plot(test_df["ds"], predictions, label="Predicted")
+
+    plt.title("Prophet Forecast")
+    plt.xlabel("Week")
+    plt.ylabel("Revenue")
+
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+
+    plot_path = Path(OUTPUT_DIR) / "prophet_forecast.png"
+    plt.savefig(plot_path, dpi=300, bbox_inches="tight")
+    plt.close()
+
+    return plot_path
+
+
+# ==========================================================
+# Summary
+# ==========================================================
+
+
+def print_summary(
+    model, train_df, test_df, mae, rmse, mape, model_path, prediction_path
+):
+    print("\n==============================")
+    print("Prophet Results")
+    print("==============================")
+    print(f"Train Rows      : {len(train_df)}")
+    print(f"Test Rows       : {len(test_df)}")
+    print(f"MAE             : {mae:,.2f}")
+    print(f"RMSE            : {rmse:,.2f}")
+    print(f"MAPE            : {mape:.2f}%")
+    print(f"Model Saved     : {model_path}")
+    print(f"Predictions CSV : {prediction_path}")
+    print("==============================")
+
+
+# ==========================================================
+# Main
+# ==========================================================
+
+
+def main():
+    print("\nStarting Prophet Training...\n")
+
+    create_directories()
+
+    df = load_data()
+    train_df, test_df = train_test_split(df)
+
+    train_prophet_df = prepare_prophet_data(train_df)
+    test_prophet_df = prepare_prophet_data(test_df)
+
+    model = train_prophet(train_prophet_df)
+    predictions, forecast = make_predictions(model, test_prophet_df)
+
+    mae, rmse, mape = evaluate_model(test_prophet_df["y"], predictions)
+
+    model_path = save_model(model)
+    prediction_df, prediction_path = save_predictions(test_prophet_df, predictions)
+
+    plot_results(train_prophet_df, test_prophet_df, predictions)
+
+    print_summary(
+        model,
+        train_prophet_df,
+        test_prophet_df,
+        mae,
+        rmse,
+        mape,
+        model_path,
+        prediction_path,
+    )
+if __name__ == "__main__":
+    main()

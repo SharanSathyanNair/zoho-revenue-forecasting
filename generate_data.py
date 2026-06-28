@@ -1,222 +1,484 @@
-#______importing libraries__________
-import pandas as pd
-import numpy as np
-from faker import Faker
 import random
 from datetime import timedelta
 
-#______initialising data__________
-fake = Faker()
-random.seed(42)
-np.random.seed(42)
+import numpy as np
+import pandas as pd
 
-START_DATE = pd.Timestamp("2022-01-01")
-END_DATE = pd.Timestamp("2025-12-31")
-NUM_CUSTOMERS = 300
+# ==========================================================
+# Configuration
+# ==========================================================
 
-#______customer profiles, purely a synthetic-data generation device__________
-# real Zoho Books data has no equivalent field, this exists only to inject
-# realistic variation into the fake invoices and payments we generate below
-CUSTOMER_PROFILES = ["reliable", "slow", "risky"]
-PROFILE_WEIGHTS = [0.6, 0.3, 0.1]
+RANDOM_SEED = 42
 
-#______creating customers__________
+random.seed(RANDOM_SEED)
+np.random.seed(RANDOM_SEED)
+
+START_DATE = pd.Timestamp("2022-01-03")
+SIMULATION_WEEKS = 208
+
+INITIAL_CUSTOMERS = 220
+TARGET_ACTIVE_CUSTOMERS = 240
+
+AVG_NEW_CUSTOMERS = 1.5
+
+CUSTOMER_PROFILE_WEIGHTS = {"reliable": 0.55, "standard": 0.30, "risky": 0.15}
+
+PROFILE_CONFIG = {
+    "reliable": {
+        "invoice_probability": 0.60,
+        "avg_invoice": 45000,
+        "invoice_sigma": 0.20,
+        "payment_delay_mean": 4,
+        "payment_delay_std": 2,
+        "split_probability": 0.10,
+        "partial_probability": 0.02,
+        "default_probability": 0.003,
+        "weekly_churn_probability": 0.0015,
+    },
+    "standard": {
+        "invoice_probability": 0.46,
+        "avg_invoice": 30000,
+        "invoice_sigma": 0.28,
+        "payment_delay_mean": 10,
+        "payment_delay_std": 4,
+        "split_probability": 0.18,
+        "partial_probability": 0.05,
+        "default_probability": 0.012,
+        "weekly_churn_probability": 0.0040,
+    },
+    "risky": {
+        "invoice_probability": 0.30,
+        "avg_invoice": 18000,
+        "invoice_sigma": 0.35,
+        "payment_delay_mean": 22,
+        "payment_delay_std": 7,
+        "split_probability": 0.30,
+        "partial_probability": 0.10,
+        "default_probability": 0.05,
+        "weekly_churn_probability": 0.0100,
+    },
+}
+
+
+MONTHLY_SEASONALITY = {
+    1: 0.90,
+    2: 0.95,
+    3: 1.00,
+    4: 1.03,
+    5: 1.05,
+    6: 1.00,
+    7: 0.98,
+    8: 1.00,
+    9: 1.05,
+    10: 1.10,
+    11: 1.15,
+    12: 1.25,
+}
+
+
+# ==========================================================
+# Global Storage
+# ==========================================================
+
 customers = []
-for i in range(NUM_CUSTOMERS):
-    profile = random.choices(CUSTOMER_PROFILES, weights=PROFILE_WEIGHTS, k=1)[0]
-    customers.append({
-        "customer_id": f"CUST{i+1:04d}",
-        "customer_name": fake.company(),
-        "profile": profile
-    })
-
-customers_df = pd.DataFrame(customers)
-
-#______creating invoices, mirrors Zoho Books /invoices fields__________
-# no payment_date or amount_paid here anymore, those live in customerpayments
 invoices = []
-invoice_id_counter = 1
-
-for _, customer in customers_df.iterrows():
-    num_invoices = np.random.randint(50, 150)
-
-    for _ in range(num_invoices):
-        invoice_date = START_DATE + timedelta(days=int(np.random.randint(0, 1460)))
-        payment_terms = int(np.random.choice([15, 30, 45, 60]))
-        due_date = invoice_date + timedelta(days=payment_terms)
-        total = round(np.random.lognormal(mean=10, sigma=1), 2)
-
-        invoices.append({
-            "invoice_id": f"INV{invoice_id_counter:06d}",
-            "customer_id": customer["customer_id"],
-            "date": invoice_date,
-            "due_date": due_date,
-            "payment_terms": payment_terms,
-            "total": total,
-            "balance": total,   # starts equal to total, gets reduced as payments come in below
-            "status": "sent"    # will be overwritten to paid/partially_paid/overdue after payments are generated
-        })
-        invoice_id_counter += 1
-
-invoices_df = pd.DataFrame(invoices)
-
-#______generating payment plans per invoice, based on customer profile__________
-# this is the new logic replacing the old single payment_date/amount_paid approach
-# each invoice gets a plan: full single payment, two-part split, three-part split, or default (never paid)
-
-def get_payment_plan(profile):
-    if profile == "reliable":
-        # mostly single payment, small chance of a two-part split, no defaults
-        plan = random.choices(["single", "two_part"], weights=[0.85, 0.15], k=1)[0]
-        defaulted = False
-    elif profile == "slow":
-        # mostly single payment but late, modest chance of two-part, no defaults
-        plan = random.choices(["single", "two_part"], weights=[0.75, 0.25], k=1)[0]
-        defaulted = False
-    else:  # risky
-        # highest chance of splitting, plus the original 20% default chance
-        defaulted = np.random.random() < 0.2
-        if defaulted:
-            plan = "none"
-        else:
-            plan = random.choices(["single", "two_part", "three_part"], weights=[0.45, 0.35, 0.20], k=1)[0]
-    return plan, defaulted
-
-#______delay distributions per profile, in days relative to due_date__________
-def get_delay(profile):
-    if profile == "reliable":
-        return np.random.randint(-5, 10)
-    elif profile == "slow":
-        return np.random.randint(10, 45)
-    else:
-        return np.random.randint(20, 90)
-
-#______generating customerpayments, mirrors Zoho Books /customerpayments fields__________
 payments = []
-payment_id_counter = 1
 
-# track running balance per invoice as payments are applied
-invoice_balances = dict(zip(invoices_df["invoice_id"], invoices_df["total"]))
-invoice_status = dict(zip(invoices_df["invoice_id"], ["sent"] * len(invoices_df)))
+customer_counter = 1
+invoice_counter = 1
+payment_counter = 1
 
-for _, invoice in invoices_df.iterrows():
-    customer_id = invoice["customer_id"]
-    profile = customers_df.loc[customers_df["customer_id"] == customer_id, "profile"].values[0]
-    plan, defaulted = get_payment_plan(profile)
 
-    if defaulted:
-        invoice_status[invoice["invoice_id"]] = "unpaid"
-        continue  # no payment rows generated, balance stays at full total
+# ==========================================================
+# ID Generators
+# ==========================================================
 
-    total = invoice["total"]
-    due_date = invoice["due_date"]
-    invoice_date = invoice["date"]
 
-    if plan == "single":
-        delay = get_delay(profile)
-        payment_date = due_date + timedelta(days=int(delay))
-        amount = total
+def next_customer_id():
+    global customer_counter
+    customer_id = f"CUST{customer_counter:04d}"
+    customer_counter += 1
+    return customer_id
 
-        payments.append({
-            "payment_id": f"PAY{payment_id_counter:06d}",
-            "customer_id": customer_id,
-            "invoice_id": invoice["invoice_id"],
-            "amount_applied": amount,
-            "date": payment_date,
-            "payment_mode": random.choice(["banktransfer", "check", "creditcard", "cash"]),
-            "status": "success"
-        })
-        payment_id_counter += 1
-        invoice_balances[invoice["invoice_id"]] -= amount
 
-    elif plan == "two_part":
-        # first installment: 40-70% of total, lands between invoice date and due date
-        first_pct = np.random.uniform(0.4, 0.7)
-        first_amount = round(total * first_pct, 2)
-        days_into_term = int((due_date - invoice_date).days * np.random.uniform(0.3, 0.9))
-        first_date = invoice_date + timedelta(days=days_into_term)
+def next_invoice_id():
+    global invoice_counter
+    invoice_id = f"INV{invoice_counter:06d}"
+    invoice_counter += 1
+    return invoice_id
 
-        payments.append({
-            "payment_id": f"PAY{payment_id_counter:06d}",
-            "customer_id": customer_id,
-            "invoice_id": invoice["invoice_id"],
-            "amount_applied": first_amount,
-            "date": first_date,
-            "payment_mode": random.choice(["banktransfer", "check", "creditcard", "cash"]),
-            "status": "success"
-        })
-        payment_id_counter += 1
-        invoice_balances[invoice["invoice_id"]] -= first_amount
 
-        # second installment: remaining balance, lands after due date with profile delay
-        second_amount = round(total - first_amount, 2)
-        delay = get_delay(profile)
-        second_date = due_date + timedelta(days=int(delay))
+def next_payment_id():
+    global payment_counter
+    payment_id = f"PAY{payment_counter:06d}"
+    payment_counter += 1
+    return payment_id
 
-        payments.append({
-            "payment_id": f"PAY{payment_id_counter:06d}",
-            "customer_id": customer_id,
-            "invoice_id": invoice["invoice_id"],
-            "amount_applied": second_amount,
-            "date": second_date,
-            "payment_mode": random.choice(["banktransfer", "check", "creditcard", "cash"]),
-            "status": "success"
-        })
-        payment_id_counter += 1
-        invoice_balances[invoice["invoice_id"]] -= second_amount
 
-    elif plan == "three_part":
-        # three smaller portions with increasing delay between each
-        pct_1 = np.random.uniform(0.25, 0.4)
-        pct_2 = np.random.uniform(0.25, 0.4)
-        pct_3 = 1 - pct_1 - pct_2
+# ==========================================================
+# Helper Functions
+# ==========================================================
 
-        amount_1 = round(total * pct_1, 2)
-        amount_2 = round(total * pct_2, 2)
-        amount_3 = round(total - amount_1 - amount_2, 2)
 
-        days_into_term_1 = int((due_date - invoice_date).days * np.random.uniform(0.2, 0.5))
-        date_1 = invoice_date + timedelta(days=days_into_term_1)
+def choose_profile():
+    return random.choices(
+        population=list(CUSTOMER_PROFILE_WEIGHTS.keys()),
+        weights=list(CUSTOMER_PROFILE_WEIGHTS.values()),
+        k=1,
+    )[0]
 
-        days_into_term_2 = int((due_date - invoice_date).days * np.random.uniform(0.6, 0.95))
-        date_2 = invoice_date + timedelta(days=days_into_term_2)
 
-        delay_3 = get_delay(profile) + np.random.randint(10, 30)  # extra lag for the final installment
-        date_3 = due_date + timedelta(days=int(delay_3))
+def seasonal_multiplier(date):
+    return MONTHLY_SEASONALITY[date.month]
 
-        for amount, date in [(amount_1, date_1), (amount_2, date_2), (amount_3, date_3)]:
-            payments.append({
-                "payment_id": f"PAY{payment_id_counter:06d}",
-                "customer_id": customer_id,
-                "invoice_id": invoice["invoice_id"],
-                "amount_applied": amount,
-                "date": date,
-                "payment_mode": random.choice(["banktransfer", "check", "creditcard", "cash"]),
-                "status": "success"
-            })
-            payment_id_counter += 1
-            invoice_balances[invoice["invoice_id"]] -= amount
 
-    # determine final status based on remaining balance
-    remaining = round(invoice_balances[invoice["invoice_id"]], 2)
-    if remaining <= 0:
-        invoice_status[invoice["invoice_id"]] = "paid"
-    else:
-        invoice_status[invoice["invoice_id"]] = "partially_paid"
+def random_invoice_date(week_start):
+    return week_start + timedelta(days=random.randint(0, 6))
 
-payments_df = pd.DataFrame(payments)
 
-#______updating invoices_df with final balance and status__________
-invoices_df["balance"] = invoices_df["invoice_id"].map(invoice_balances).round(2)
-invoices_df["status"] = invoices_df["invoice_id"].map(invoice_status)
+def generate_base_invoice(profile):
+    config = PROFILE_CONFIG[profile]
+    amount = np.random.lognormal(
+        mean=np.log(config["avg_invoice"]), sigma=config["invoice_sigma"]
+    )
+    return round(amount, 2)
 
-#______saving both tables to data folder__________
-invoices_df.to_csv("data/invoices.csv", index=False)
-payments_df.to_csv("data/customerpayments.csv", index=False)
-customers_df.to_csv("data/customers.csv", index=False)
 
-print(f"Customers generated: {len(customers_df)}")
-print(f"Invoices generated: {len(invoices_df)}")
-print(f"Payments generated: {len(payments_df)}")
-print(invoices_df.head())
-print(payments_df.head())
+def generate_invoice_amount(customer, invoice_date):
+    weekly_variation = np.clip(np.random.normal(loc=1.0, scale=0.08), 0.75, 1.25)
+
+    amount = (
+        customer["base_invoice"]
+        * customer["customer_value_factor"]
+        * seasonal_multiplier(invoice_date)
+        * weekly_variation
+    )
+
+    return round(max(amount, 500), 2)
+
+
+def payment_delay(customer):
+    delay = np.random.normal(
+        customer["payment_delay_mean"], customer["payment_delay_std"]
+    )
+    return max(0, int(round(delay)))
+
+
+def active_customer_count():
+    return sum(customer["status"] == "active" for customer in customers)
+
+
+# ==========================================================
+# Customer Functions
+# ==========================================================
+
+
+def create_customer(join_date):
+    profile = choose_profile()
+    config = PROFILE_CONFIG[profile]
+
+    customer = {
+        "customer_id": next_customer_id(),
+        "profile": profile,
+        "status": "active",
+        "join_date": join_date,
+        "churn_date": pd.NaT,
+        # Business behaviour
+        "customer_value_factor": round(np.random.normal(1.0, 0.12), 2),
+        "purchase_frequency_factor": round(np.random.normal(1.0, 0.10), 2),
+        "base_invoice": generate_base_invoice(profile),
+        "invoice_probability": config["invoice_probability"],
+        "payment_delay_mean": config["payment_delay_mean"],
+        "payment_delay_std": config["payment_delay_std"],
+        "split_probability": config["split_probability"],
+        "partial_probability": config["partial_probability"],
+        "default_probability": config["default_probability"],
+        "weekly_churn_probability": config["weekly_churn_probability"],
+    }
+
+    customers.append(customer)
+
+
+def initialize_business():
+    for _ in range(INITIAL_CUSTOMERS):
+        create_customer(START_DATE)
+
+
+# ==========================================================
+# Customer Churn
+# ==========================================================
+
+
+def churn_customers(current_date):
+    for customer in customers:
+        if customer["status"] != "active":
+            continue
+
+        if random.random() < customer["weekly_churn_probability"]:
+            customer["status"] = "churned"
+            customer["churn_date"] = current_date
+
+
+# ==========================================================
+# Weekly Customer Behaviour
+# ==========================================================
+
+
+def weekly_invoice_probability(customer):
+    base_probability = (
+        customer["invoice_probability"] * customer["purchase_frequency_factor"]
+    )
+    probability = np.random.normal(base_probability, 0.03)
+    probability = np.clip(probability, 0.05, 0.95)
+    return probability
+
+
+# ==========================================================
+# Invoice Functions
+# ==========================================================
+
+
+def create_invoice(customer, invoice_date):
+    invoice = {
+        "invoice_id": next_invoice_id(),
+        "customer_id": customer["customer_id"],
+        "invoice_date": invoice_date,
+        "due_date": invoice_date + timedelta(days=30),
+        "invoice_amount": generate_invoice_amount(customer, invoice_date),
+        "amount_paid": 0.0,
+        "status": "Open",
+    }
+
+    invoices.append(invoice)
+
+    return invoice
+
+
+def generate_weekly_invoices(week_start):
+    weekly_invoices = []
+
+    for customer in customers:
+        if customer["status"] != "active":
+            continue
+
+        probability = weekly_invoice_probability(customer)
+
+        if random.random() > probability:
+            continue
+
+        invoice_date = random_invoice_date(week_start)
+        invoice = create_invoice(customer, invoice_date)
+        weekly_invoices.append((customer, invoice))
+
+    return weekly_invoices
+
+
+# ==========================================================
+# Customer Acquisition
+# ==========================================================
+
+
+def acquire_new_customers(current_date):
+    active = active_customer_count()
+    gap = TARGET_ACTIVE_CUSTOMERS - active
+    expected = AVG_NEW_CUSTOMERS
+
+    if gap >= 20:
+        expected += 1.0
+    elif gap >= 10:
+        expected += 0.5
+    elif gap <= -20:
+        expected -= 1.0
+    elif gap <= -10:
+        expected -= 0.5
+
+    expected = max(0.5, expected)
+
+    new_customers = np.random.poisson(expected)
+
+    for _ in range(new_customers):
+        create_customer(current_date)
+
+
+# ==========================================================
+# Payment Functions
+# ==========================================================
+
+
+def create_payment(invoice, payment_date, amount):
+    payment = {
+        "payment_id": next_payment_id(),
+        "invoice_id": invoice["invoice_id"],
+        "customer_id": invoice["customer_id"],
+        "payment_date": payment_date,
+        "payment_amount": round(amount, 2),
+    }
+
+    payments.append(payment)
+
+
+def process_invoice_payment(customer, invoice):
+    invoice_amount = invoice["invoice_amount"]
+
+    # Customer defaults
+    if random.random() < customer["default_probability"]:
+        invoice["status"] = "Overdue"
+        return
+
+    payment_date = invoice["invoice_date"] + timedelta(days=payment_delay(customer))
+
+    # Partial payment
+    if random.random() < customer["partial_probability"]:
+        paid_amount = round(invoice_amount * random.uniform(0.40, 0.90), 2)
+        create_payment(invoice, payment_date, paid_amount)
+        invoice["amount_paid"] = paid_amount
+        invoice["status"] = "Partially Paid"
+        return
+
+    # Split payment
+    if random.random() < customer["split_probability"]:
+        first_payment = round(invoice_amount * random.uniform(0.30, 0.70), 2)
+        second_payment = round(invoice_amount - first_payment, 2)
+        create_payment(invoice, payment_date, first_payment)
+        create_payment(invoice, payment_date + timedelta(days=7), second_payment)
+        invoice["amount_paid"] = invoice_amount
+        invoice["status"] = "Paid"
+        return
+
+    # Full payment
+    create_payment(invoice, payment_date, invoice_amount)
+    invoice["amount_paid"] = invoice_amount
+    invoice["status"] = "Paid"
+
+
+# ==========================================================
+# Weekly Payment Simulation
+# ==========================================================
+
+
+def process_weekly_payments(weekly_invoices):
+    for customer, invoice in weekly_invoices:
+        process_invoice_payment(customer, invoice)
+
+
+# ==========================================================
+# Weekly Business Simulation
+# ==========================================================
+
+
+def simulate_week(week_start):
+    # Existing customers may churn
+    churn_customers(week_start)
+
+    # Replace lost customers
+    acquire_new_customers(week_start)
+
+    # Generate invoices
+    weekly_invoices = generate_weekly_invoices(week_start)
+
+    # Process payments
+    process_weekly_payments(weekly_invoices)
+
+
+# ==========================================================
+# Full Business Simulation
+# ==========================================================
+
+
+def simulate_business():
+    current_week = START_DATE
+
+    for _ in range(SIMULATION_WEEKS):
+        simulate_week(current_week)
+        current_week += timedelta(days=7)
+
+
+# ==========================================================
+# Export Functions
+# ==========================================================
+
+
+def export_customers():
+    customers_df = pd.DataFrame(customers)
+    customers_df.sort_values("customer_id", inplace=True)
+    customers_df.to_csv("data/customers.csv", index=False)
+    return customers_df
+
+
+def export_invoices():
+    invoices_df = pd.DataFrame(invoices)
+    invoices_df.sort_values("invoice_date", inplace=True)
+    invoices_df.to_csv("data/invoices.csv", index=False)
+    return invoices_df
+
+
+def export_payments():
+    payments_df = pd.DataFrame(payments)
+    payments_df.sort_values("payment_date", inplace=True)
+    payments_df.to_csv("data/customerpayments.csv", index=False)
+    return payments_df
+
+
+# ==========================================================
+# Validation
+# ==========================================================
+
+
+def validate_data(customers_df, invoices_df, payments_df):
+    print("\nRunning validation...\n")
+
+    assert customers_df["customer_id"].is_unique
+    assert invoices_df["invoice_id"].is_unique
+    assert payments_df["payment_id"].is_unique
+    assert (invoices_df["invoice_amount"] > 0).all()
+    assert (invoices_df["amount_paid"] <= invoices_df["invoice_amount"]).all()
+
+    print("Validation passed.")
+
+
+# ==========================================================
+# Business Summary
+# ==========================================================
+
+
+def business_summary(customers_df, invoices_df, payments_df):
+    active = (customers_df["status"] == "active").sum()
+    churned = (customers_df["status"] == "churned").sum()
+
+    print("\n==============================")
+    print("Business Summary")
+    print("==============================")
+    print(f"Simulation Weeks : {SIMULATION_WEEKS}")
+    print(f"Customers        : {len(customers_df)}")
+    print(f"Active Customers : {active}")
+    print(f"Churned          : {churned}")
+    print(f"Invoices         : {len(invoices_df)}")
+    print(f"Payments         : {len(payments_df)}")
+    print(f"Average Invoice  : {invoices_df['invoice_amount'].mean():,.2f}")
+    print(f"Average Payment  : {payments_df['payment_amount'].mean():,.2f}")
+    print("==============================")
+
+
+# ==========================================================
+# Main
+# ==========================================================
+
+
+def main():
+    print("\nStarting business simulation...\n")
+
+    initialize_business()
+    simulate_business()
+
+    customers_df = export_customers()
+    invoices_df = export_invoices()
+    payments_df = export_payments()
+
+    validate_data(customers_df, invoices_df, payments_df)
+    business_summary(customers_df, invoices_df, payments_df)
+
+    print("\nCSV files generated successfully.")
+
+
+if __name__ == "__main__":
+    main()
