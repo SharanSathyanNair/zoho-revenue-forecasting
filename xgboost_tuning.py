@@ -224,7 +224,7 @@ def main() -> None:
         create_directory()
         df = load_data()
         train_df = df.iloc[:-12].copy()
-        X, y = prepare_features(df)
+        X, y = prepare_features(train_df)
         model = build_model()
         search = tune_model(
             model,
