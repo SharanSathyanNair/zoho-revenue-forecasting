@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import json
+
 import pandas as pd
 
 from forecast_engine import run_forecast
@@ -15,6 +17,24 @@ def load_history():
     )
 
     return history
+
+
+def load_model_health():
+    """
+    Load the latest saved forecast summary, which contains
+    model_stability and drift_detected (written by train_xgboost.py).
+
+    Returns None if the summary hasn't been generated yet, so the
+    dashboard can simply skip the warning instead of crashing.
+    """
+
+    path = Path("outputs/forecast_summary.json")
+
+    if not path.exists():
+        return None
+
+    with open(path, "r") as f:
+        return json.load(f)
 
 
 def get_forecast(

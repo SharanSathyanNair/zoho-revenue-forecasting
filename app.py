@@ -11,6 +11,7 @@ from utils import (
     load_history,
     get_forecast,
     calculate_growth,
+    load_model_health,
 )
 
 
@@ -25,6 +26,21 @@ st.set_page_config(
 )
 
 st.title("📈 Zoho Revenue Forecasting Dashboard")
+
+# ==========================================================
+# Model Health / Drift Warning
+# ==========================================================
+
+model_health = load_model_health()
+
+if model_health is not None and model_health.get("drift_detected"):
+    st.warning(
+        f"⚠️ Model drift detected — recent prediction stability is "
+        f"{model_health['model_stability']:.1f}% (below the 75% threshold). "
+        f"Forecasts and confidence intervals below may be less reliable than "
+        f"usual. Consider retraining the model on more recent data.",
+        icon="⚠️",
+    )
 
 st.markdown("---")
 

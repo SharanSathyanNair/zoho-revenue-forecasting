@@ -16,6 +16,7 @@ models/*.pkl
 outputs/*.csv
 outputs/*.json
 outputs/*.npy
+outputs/*.png
 
 # Data
 data/*.csv

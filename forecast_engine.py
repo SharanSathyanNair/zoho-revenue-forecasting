@@ -15,7 +15,7 @@ from pathlib import Path
 from prediction_interval import (
     calculate_residuals,
     calculate_conformal_quantile,
-    generate_prediction_interval,
+    generate_horizon_scaled_interval,
 )
 
 # ==========================================================
@@ -157,6 +157,10 @@ def update_business_features(history, next_week):
             history["revenue_per_customer_lag_1"]
     )
 
+    next_week["new_customers_lag_1"] = weighted_recent_average(
+            history["new_customers_lag_1"]
+    )
+
     # ------------------------------------------------------
     # Invoice Trend
     # ------------------------------------------------------
@@ -199,6 +203,10 @@ def update_business_features(history, next_week):
 
     next_week["outstanding_lag_1"] = weighted_recent_average(
         history["outstanding_lag_1"]
+    )
+
+    next_week["payment_count_lag_1"] = weighted_recent_average(
+        history["payment_count_lag_1"]
     )
 
     # ------------------------------------------------------
@@ -401,7 +409,7 @@ def forecast_with_confidence(
         residuals
     )
 
-    lower, upper = generate_prediction_interval(
+    lower, upper = generate_horizon_scaled_interval(
         forecast["weekly_revenue"].values,
         quantile,
     )

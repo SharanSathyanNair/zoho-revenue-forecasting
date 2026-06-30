@@ -12,6 +12,7 @@ from prediction_interval import (
     generate_prediction_interval,
     calculate_forecast_confidence,
     calculate_recent_model_stability,
+    check_model_drift,
     generate_forecast_summary,
 )
 
@@ -416,6 +417,7 @@ def print_summary(
     mape,
     confidence,
     stability,
+    drift_detected,
 ):
     print("\n=====================================================")
     print("Walk-Forward Validation Results")
@@ -432,10 +434,13 @@ def print_summary(
     print("------------------------------")
     print(f"Forecast Confidence     : {confidence:.2f}%")
     print(f"Model Stability         : {stability:.2f}%")
+    print(f"Drift Detected          : {drift_detected}")
     print("\nArtifacts")
     print("------------------------------")
     print("Predictions             : outputs/walk_forward_predictions.csv")
     print("Plot                    : outputs/walk_forward_plot.png")
+    print("Residuals (calibration) : outputs/residuals.npy")
+    print("Forecast Summary        : outputs/forecast_summary.json")
     print("=====================================================")
 
 # ==========================================================
@@ -481,6 +486,36 @@ def main() -> None:
             validation_results["predicted"],
         )
 
+        # ------------------------------------------------------
+        # Overwrite outputs/residuals.npy with walk-forward
+        # residuals (built from many rolling-origin windows,
+        # not just one 12-week holdout). forecast_engine.py
+        # reads this file to calibrate the live forecast
+        # interval, so this makes the dashboard's interval and
+        # drift signal reflect the more statistically robust
+        # walk-forward evaluation.
+        # ------------------------------------------------------
+
+        np.save(
+            Path(OUTPUT_DIR) / "residuals.npy",
+            residuals,
+        )
+
+        drift_detected = check_model_drift(stability)
+
+        forecast_summary = generate_forecast_summary(
+            forecast=validation_results["predicted"].iloc[-1],
+            lower=lower[-1],
+            upper=upper[-1],
+            confidence=confidence,
+            stability=stability,
+        )
+
+        summary_path = Path(OUTPUT_DIR) / "forecast_summary.json"
+
+        with open(summary_path, "w") as f:
+            json.dump(forecast_summary, f, indent=4)
+
         save_results(
             validation_results,
             lower,
@@ -502,6 +537,7 @@ def main() -> None:
             mape,
             confidence,
             stability,
+            drift_detected,
         )
 
     except Exception as e:

@@ -1,8 +1,8 @@
 {
-    "forecast": 6452755.0,
-    "lower_bound": 4714292.96,
-    "upper_bound": 8191217.04,
-    "forecast_confidence": 72.85,
-    "model_stability": 60.73,
+    "forecast": 6894345.5,
+    "lower_bound": 5909073.91,
+    "upper_bound": 7879617.09,
+    "forecast_confidence": 83.43,
+    "model_stability": 56.18,
     "drift_detected": true
 }

@@ -106,6 +106,46 @@ def generate_prediction_interval(
 
 
 # ==========================================================
+# Horizon-Scaled Prediction Interval
+# ==========================================================
+
+def generate_horizon_scaled_interval(
+    predictions: np.ndarray,
+    quantile: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Generate prediction intervals that widen with forecast horizon.
+
+    Recursive multi-step forecasts feed earlier predictions back in
+    as inputs, so errors compound the further out you forecast.
+    A flat-width interval (prediction +/- quantile) understates this
+    growing uncertainty. This widens the interval by sqrt(step),
+    matching the standard random-walk assumption that error variance
+    grows roughly linearly with each additional step (so error
+    standard deviation grows with the square root of the step count).
+
+    Step 1 (next week) keeps the original calibrated width.
+    Step N gets quantile * sqrt(N).
+    """
+
+    predictions = np.asarray(predictions, dtype=float)
+
+    if len(predictions) == 0:
+        raise ValueError("Predictions cannot be empty.")
+
+    if quantile < 0:
+        raise ValueError("Quantile must be non-negative.")
+
+    steps = np.arange(1, len(predictions) + 1)
+    scaled_quantile = quantile * np.sqrt(steps)
+
+    lower = predictions - scaled_quantile
+    upper = predictions + scaled_quantile
+
+    return lower, upper
+
+
+# ==========================================================
 # Forecast Confidence
 # ==========================================================
 
@@ -220,6 +260,7 @@ __all__ = [
     "calculate_residuals",
     "calculate_conformal_quantile",
     "generate_prediction_interval",
+    "generate_horizon_scaled_interval",
     "calculate_forecast_confidence",
     "calculate_recent_model_stability",
     "check_model_drift",

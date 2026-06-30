@@ -146,7 +146,9 @@ def create_customer_features(df):
         /
         df["active_customers"].shift(1).replace(0, np.nan)
     )
-    
+
+    df["new_customers_lag_1"] = df["new_customers"].shift(1)
+
     return df
 
 # ==========================================================
@@ -204,7 +206,11 @@ def create_payment_features(df):
         df["weekly_revenue"].shift(1) -
         df["weekly_payments"].shift(1)
     )
-    
+
+    df["payment_count_lag_1"] = (
+        df["payment_count"].shift(1)
+    )
+
     return df 
 # ==========================================================
 # Calendar Features
@@ -245,6 +251,8 @@ def clean_dataset(df):
     "average_invoice",
     "weekly_payments",
     "average_payment",
+    "payment_count",
+    "new_customers",
     ]
 
     df = df.drop(
