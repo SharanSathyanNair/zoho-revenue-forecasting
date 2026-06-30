@@ -1,4 +1,4 @@
-# 📈 Zoho Revenue Forecasting using XGBoost
+# 📈 AI-Powered Revenue Forecasting using Zoho Books and XGBoost
 
 An AI-powered revenue forecasting system that predicts future weekly business revenue using historical accounting data from **Zoho Books**.
 
@@ -299,18 +299,64 @@ Current XGBoost Performance
 
 > Performance depends on the quality and quantity of historical business data available.
 
+# ✅ Current Features
+
+The project currently includes the following functionality:
+
+### Data Processing
+- Weekly business metric generation from Zoho Books transaction data
+- Data validation and preprocessing
+- Automated feature engineering pipeline
+- Business KPI aggregation
+
+### Machine Learning
+- XGBoost Regressor for revenue forecasting
+- Hyperparameter tuning using RandomizedSearchCV
+- Walk-Forward Validation using TimeSeriesSplit
+- Recursive multi-step forecasting (up to 52 weeks)
+- Conformal Prediction Intervals
+- Model evaluation using MAE, RMSE and MAPE
+
+### Feature Engineering
+- Revenue trend and momentum features
+- Customer behaviour features
+- Invoice trend features
+- Payment and collection features
+- Seasonality encoding using cyclical calendar features
+- 38 engineered features generated from weekly business metrics
+
+### Explainable AI
+- SHAP feature importance analysis
+- Global feature importance visualization
+- Model interpretability
+
+### Dashboard
+- Interactive Streamlit dashboard
+- Revenue forecast visualization
+- Historical vs Forecast comparison
+- KPI summary cards
+- Weekly forecast table
+- CSV export of forecast results
+- Forecast horizon selection (up to one year)
+
+### Business Intelligence
+- Revenue trend analysis
+- Customer trend analysis
+- Invoice trend analysis
+- Payment collection analysis
+- Confidence interval estimation
+
 
 # 🔄 Future Improvements
 
 - Direct Zoho Books API Integration
 - Automatic Model Retraining
-- SHAP Explainability
 - Multi-company Forecasting
-- Customer Churn Prediction
 - Cash Flow Forecasting
-- Inventory Forecasting
 - Automated Scheduling
-- Email Report Generation
+- Cloud deployment for organization-wide access
+- Revenue driver recommendations based on feature importance
+- Monthly, quarterly, and yearly forecasting options
 
 # 👨‍💻 Author
 
