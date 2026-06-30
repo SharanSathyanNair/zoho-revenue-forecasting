@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+.env
+
+# VS Code
+.vscode/
+
+# Model Files
+models/*.pkl
+
+# Generated Outputs
+outputs/*.csv
+outputs/*.json
+outputs/*.npy
+
+# Data
+data/*.csv
+
+# Streamlit Cache
+.streamlit/secrets.toml

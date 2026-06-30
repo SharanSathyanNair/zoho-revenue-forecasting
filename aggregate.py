@@ -17,14 +17,22 @@ OUTPUT_FILE = "data/weekly_business_metrics.csv"
 
 
 def load_data():
-    customers_df = pd.read_csv(CUSTOMERS_FILE, parse_dates=["join_date", "churn_date"])
+    customers_df = pd.read_csv(
+        CUSTOMERS_FILE,
+        parse_dates=["created_time"],
+    )
 
-    invoices_df = pd.read_csv(INVOICES_FILE, parse_dates=["invoice_date", "due_date"])
+    invoices_df = pd.read_csv(
+        INVOICES_FILE,
+        parse_dates=["date", "due_date"],
+    )
 
-    payments_df = pd.read_csv(PAYMENTS_FILE, parse_dates=["payment_date"])
+    payments_df = pd.read_csv(
+        PAYMENTS_FILE,
+        parse_dates=["date"],
+    )
 
     return customers_df, invoices_df, payments_df
-
 
 # ==========================================================
 # Validation
@@ -56,11 +64,17 @@ def week_start(date_series):
 
 
 def build_week_calendar(invoices_df):
-    first_week = week_start(invoices_df["invoice_date"]).min()
-    last_week = week_start(invoices_df["invoice_date"]).max()
+    first_week = week_start(invoices_df["date"]).min()
+    last_week = week_start(invoices_df["date"]).max()
 
     calendar = pd.DataFrame(
-        {"week": pd.date_range(start=first_week, end=last_week, freq="W-MON")}
+        {
+            "week": pd.date_range(
+                start=first_week,
+                end=last_week,
+                freq="W-MON",
+            )
+        }
     )
 
     return calendar
@@ -73,12 +87,16 @@ def build_week_calendar(invoices_df):
 
 def aggregate_revenue(invoices_df):
     revenue = invoices_df.copy()
-    revenue["week"] = week_start(revenue["invoice_date"])
 
-    revenue = revenue.groupby("week", as_index=False).agg(
-        weekly_revenue=("invoice_amount", "sum"),
+    revenue["week"] = week_start(revenue["date"])
+
+    revenue = revenue.groupby(
+        "week",
+        as_index=False,
+    ).agg(
+        weekly_revenue=("total", "sum"),
         invoice_count=("invoice_id", "count"),
-        average_invoice=("invoice_amount", "mean"),
+        average_invoice=("total", "mean"),
     )
 
     return revenue
@@ -91,12 +109,16 @@ def aggregate_revenue(invoices_df):
 
 def aggregate_payments(payments_df):
     payments = payments_df.copy()
-    payments["week"] = week_start(payments["payment_date"])
 
-    payments = payments.groupby("week", as_index=False).agg(
-        weekly_payments=("payment_amount", "sum"),
+    payments["week"] = week_start(payments["date"])
+
+    payments = payments.groupby(
+        "week",
+        as_index=False,
+    ).agg(
+        weekly_payments=("amount", "sum"),
         payment_count=("payment_id", "count"),
-        average_payment=("payment_amount", "mean"),
+        average_payment=("amount", "mean"),
     )
 
     return payments
@@ -109,24 +131,19 @@ def aggregate_payments(payments_df):
 
 def aggregate_new_customers(customers_df):
     new_customers = customers_df.copy()
-    new_customers["week"] = week_start(new_customers["join_date"])
 
-    new_customers = new_customers.groupby("week", as_index=False).agg(
+    new_customers["week"] = week_start(
+        new_customers["created_time"]
+    )
+
+    new_customers = new_customers.groupby(
+        "week",
+        as_index=False,
+    ).agg(
         new_customers=("customer_id", "count")
     )
 
     return new_customers
-
-
-def aggregate_churn(customers_df):
-    churn = customers_df.dropna(subset=["churn_date"]).copy()
-    churn["week"] = week_start(churn["churn_date"])
-
-    churn = churn.groupby("week", as_index=False).agg(
-        churned_customers=("customer_id", "count")
-    )
-
-    return churn
 
 
 def aggregate_active_customers(customers_df, calendar):
@@ -134,16 +151,16 @@ def aggregate_active_customers(customers_df, calendar):
 
     for week in calendar["week"]:
         active = customers_df[
-            (customers_df["join_date"] <= week)
-            & (customers_df["churn_date"].isna() | (customers_df["churn_date"] > week))
+            (customers_df["created_time"] <= week)
+            & (customers_df["status"] == "active")
         ].shape[0]
+
         active_counts.append(active)
 
-    active_df = pd.DataFrame(
-        {"week": calendar["week"], "active_customers": active_counts}
-    )
-
-    return active_df
+    return pd.DataFrame({
+        "week": calendar["week"],
+        "active_customers": active_counts,
+    })
 
 
 # ==========================================================
@@ -152,13 +169,17 @@ def aggregate_active_customers(customers_df, calendar):
 
 
 def build_weekly_dataset(
-    calendar, revenue, payments, new_customers, churn, active_customers
+    calendar,
+    revenue,
+    payments,
+    new_customers,
+    active_customers,
 ):
     weekly = calendar.copy()
+
     weekly = weekly.merge(revenue, on="week", how="left")
     weekly = weekly.merge(payments, on="week", how="left")
     weekly = weekly.merge(new_customers, on="week", how="left")
-    weekly = weekly.merge(churn, on="week", how="left")
     weekly = weekly.merge(active_customers, on="week", how="left")
 
     count_columns = [
@@ -167,12 +188,12 @@ def build_weekly_dataset(
         "invoice_count",
         "payment_count",
         "new_customers",
-        "churned_customers"
     ]
-    weekly[count_columns] = (
-        weekly[count_columns]
-        .fillna(0)
-    )
+
+    weekly[count_columns] = weekly[count_columns].fillna(0)
+    weekly["average_invoice"] = weekly["average_invoice"].fillna(0)
+    weekly["average_payment"] = weekly["average_payment"].fillna(0)
+    weekly["active_customers"] = weekly["active_customers"].fillna(0)
     return weekly 
 
 # ==========================================================
@@ -247,11 +268,10 @@ def main():
     revenue = aggregate_revenue(invoices_df)
     payments = aggregate_payments(payments_df)
     new_customers = aggregate_new_customers(customers_df)
-    churn = aggregate_churn(customers_df)
     active_customers = aggregate_active_customers(customers_df, calendar)
 
     weekly_df = build_weekly_dataset(
-        calendar, revenue, payments, new_customers, churn, active_customers
+        calendar, revenue, payments, new_customers, active_customers
     )
 
     weekly_df = export_dataset(weekly_df)

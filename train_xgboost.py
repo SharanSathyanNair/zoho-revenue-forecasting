@@ -1,4 +1,5 @@
 import json
+import numpy as np 
 import warnings
 from pathlib import Path
 import joblib
@@ -33,7 +34,7 @@ OUTPUT_DIR = "outputs"
 FORECAST_SUMMARY_FILE = "forecast_summary.json"
 MODEL_NAME = "xgboost_model.pkl"
 PREDICTION_FILE = "xgboost_predictions.csv"
-FORECAST_HORIZON = 12
+DEFAULT_FORECAST_WEEKS = 12
 RANDOM_STATE = 42
 
 # ==========================================================
@@ -84,13 +85,43 @@ def load_parameters() -> dict:
     with open(path, "r") as f:
         return json.load(f)
 
+from datetime import datetime
+
+
+def calculate_forecast_horizon(
+    last_week,
+    forecast_type="weeks",
+    weeks=12,
+    target_year=None,
+    target_month=None,
+):
+    """
+    Calculate forecast horizon in weeks.
+    """
+
+    if forecast_type == "weeks":
+        return max(1, weeks)
+
+    target_date = pd.Timestamp(
+        year=target_year,
+        month=target_month,
+        day=1,
+    ) + pd.offsets.MonthEnd(0)
+
+    horizon = (
+        (target_date - last_week).days // 7
+    )
+
+    return max(1, horizon)
+
 # ==========================================================
 # Split
 # ==========================================================
 
-def split_data(df):
-    train = df.iloc[:-FORECAST_HORIZON].copy()
-    test = df.iloc[-FORECAST_HORIZON:].copy()
+def split_data(df, forecast_horizon):
+    train = df.iloc[:-forecast_horizon].copy()
+    test = df.iloc[-forecast_horizon:].copy()
+
     return train, test
 
 # ==========================================================
@@ -400,7 +431,11 @@ def main() -> None:
         create_directories()
         df = load_data()
         params = load_parameters()
-        train_df, test_df = split_data(df)
+        forecast_horizon = DEFAULT_FORECAST_WEEKS
+        train_df, test_df = split_data(
+            df,
+            forecast_horizon,
+        )
         X_train, y_train = prepare_features(train_df)
         X_test, y_test = prepare_features(test_df)
         X_all, _ = prepare_features(df)
@@ -414,6 +449,13 @@ def main() -> None:
         residuals = calculate_residuals(
             y_test,
             test_predictions,
+        )
+        # ==========================================================
+        # Save Residuals
+        # ==========================================================
+        np.save(
+            Path(OUTPUT_DIR) / "residuals.npy",
+            residuals,
         )
         quantile = calculate_conformal_quantile(
             residuals,

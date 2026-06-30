@@ -4,6 +4,10 @@ from datetime import timedelta
 import numpy as np
 import pandas as pd
 
+from faker import Faker
+
+fake = Faker()
+
 # ==========================================================
 # Configuration
 # ==========================================================
@@ -178,12 +182,15 @@ def create_customer(join_date):
     config = PROFILE_CONFIG[profile]
 
     customer = {
+        # Zoho Books fields
         "customer_id": next_customer_id(),
-        "profile": profile,
+        "customer_name": fake.company(),
+        "created_time": join_date,
         "status": "active",
-        "join_date": join_date,
-        "churn_date": pd.NaT,
-        # Business behaviour
+        "payment_terms": random.choice([15, 30, 45, 60]),
+
+        # Internal simulation fields
+        "profile": profile,
         "customer_value_factor": round(np.random.normal(1.0, 0.12), 2),
         "purchase_frequency_factor": round(np.random.normal(1.0, 0.10), 2),
         "base_invoice": generate_base_invoice(profile),
@@ -197,6 +204,7 @@ def create_customer(join_date):
     }
 
     customers.append(customer)
+    return customer
 
 
 def initialize_business():
@@ -215,8 +223,7 @@ def churn_customers(current_date):
             continue
 
         if random.random() < customer["weekly_churn_probability"]:
-            customer["status"] = "churned"
-            customer["churn_date"] = current_date
+            customer["status"] = "inactive"
 
 
 # ==========================================================
@@ -393,31 +400,78 @@ def simulate_business():
         current_week += timedelta(days=7)
 
 
+
+
+
 # ==========================================================
 # Export Functions
 # ==========================================================
 
-
 def export_customers():
     customers_df = pd.DataFrame(customers)
+
+    export_columns = [
+        "customer_id",
+        "customer_name",
+        "created_time",
+        "status",
+        "payment_terms",
+    ]
+
+    customers_df = customers_df[export_columns]
     customers_df.sort_values("customer_id", inplace=True)
     customers_df.to_csv("data/customers.csv", index=False)
+
     return customers_df
 
 
 def export_invoices():
     invoices_df = pd.DataFrame(invoices)
-    invoices_df.sort_values("invoice_date", inplace=True)
+
+    invoices_df = invoices_df.rename(
+        columns={
+            "invoice_date": "date",
+            "invoice_amount": "total",
+        }
+    )
+
+    invoices_df.sort_values("date", inplace=True)
     invoices_df.to_csv("data/invoices.csv", index=False)
+
     return invoices_df
 
 
 def export_payments():
     payments_df = pd.DataFrame(payments)
-    payments_df.sort_values("payment_date", inplace=True)
+
+    payments_df = payments_df.rename(
+        columns={
+            "payment_date": "date",
+            "payment_amount": "amount",
+        }
+    )
+
+    payments_df.sort_values("date", inplace=True)
     payments_df.to_csv("data/customerpayments.csv", index=False)
+
     return payments_df
 
+
+def export_payments():
+    payments_df = pd.DataFrame(payments)
+
+    payments_df = payments_df.rename(
+        columns={
+            "payment_date": "date",
+            "payment_amount": "amount",
+        }
+    )
+
+    payments_df.sort_values("date", inplace=True)
+
+    payments_df.to_csv("data/customerpayments.csv", index=False)
+
+    return payments_df
 
 # ==========================================================
 # Validation
@@ -430,8 +484,9 @@ def validate_data(customers_df, invoices_df, payments_df):
     assert customers_df["customer_id"].is_unique
     assert invoices_df["invoice_id"].is_unique
     assert payments_df["payment_id"].is_unique
-    assert (invoices_df["invoice_amount"] > 0).all()
-    assert (invoices_df["amount_paid"] <= invoices_df["invoice_amount"]).all()
+
+    assert (invoices_df["total"] > 0).all()
+    assert (invoices_df["amount_paid"] <= invoices_df["total"]).all()
 
     print("Validation passed.")
 
@@ -443,7 +498,7 @@ def validate_data(customers_df, invoices_df, payments_df):
 
 def business_summary(customers_df, invoices_df, payments_df):
     active = (customers_df["status"] == "active").sum()
-    churned = (customers_df["status"] == "churned").sum()
+    inactive = (customers_df["status"] == "inactive").sum()
 
     print("\n==============================")
     print("Business Summary")
@@ -451,13 +506,12 @@ def business_summary(customers_df, invoices_df, payments_df):
     print(f"Simulation Weeks : {SIMULATION_WEEKS}")
     print(f"Customers        : {len(customers_df)}")
     print(f"Active Customers : {active}")
-    print(f"Churned          : {churned}")
+    print(f"Inactive         : {inactive}")
     print(f"Invoices         : {len(invoices_df)}")
     print(f"Payments         : {len(payments_df)}")
-    print(f"Average Invoice  : {invoices_df['invoice_amount'].mean():,.2f}")
-    print(f"Average Payment  : {payments_df['payment_amount'].mean():,.2f}")
+    print(f"Average Invoice  : {invoices_df['total'].mean():,.2f}")
+    print(f"Average Payment  : {payments_df['amount'].mean():,.2f}")
     print("==============================")
-
 
 # ==========================================================
 # Main

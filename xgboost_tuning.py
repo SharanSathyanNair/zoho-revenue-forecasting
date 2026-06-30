@@ -102,7 +102,7 @@ def build_parameter_space() -> dict:
 
     return {
         "n_estimators": randint(250, 900),
-        "max_depth": randint(2, 8),
+        "max_depth": randint(2, 5),
         "learning_rate": uniform(0.01, 0.19),
         "subsample": uniform(0.70, 0.30),
         "colsample_bytree": uniform(0.70, 0.30),
@@ -223,6 +223,7 @@ def main() -> None:
     try:
         create_directory()
         df = load_data()
+        train_df = df.iloc[:-12].copy()
         X, y = prepare_features(df)
         model = build_model()
         search = tune_model(

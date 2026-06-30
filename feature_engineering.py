@@ -133,10 +133,7 @@ def create_revenue_features(df):
 # ==========================================================
 
 def create_customer_features(df):
-
-    df["active_customers_lag_1"] = (
-        df["active_customers"].shift(1)
-    )
+    df["active_customers_lag_1"] = df["active_customers"].shift(1)
 
     df["customer_trend_4"] = (
         df["active_customers_lag_1"]
@@ -144,15 +141,19 @@ def create_customer_features(df):
         .mean()
     )
 
+    df["revenue_per_customer_lag_1"] = (
+        df["weekly_revenue"].shift(1)
+        /
+        df["active_customers"].shift(1).replace(0, np.nan)
+    )
+    
     return df
-
 
 # ==========================================================
 # Invoice Features
 # ==========================================================
 
 def create_invoice_features(df):
-
     df["invoice_count_lag_1"] = (
         df["invoice_count"].shift(1)
     )
@@ -167,6 +168,11 @@ def create_invoice_features(df):
         .mean()
     )
 
+    df["invoice_growth"] = (
+        df["invoice_count_lag_1"] /
+        df["invoice_count"].shift(4)
+    ) - 1
+
     return df
 
 
@@ -175,7 +181,6 @@ def create_invoice_features(df):
 # ==========================================================
 
 def create_payment_features(df):
-
     df["payment_lag_1"] = (
         df["weekly_payments"].shift(1)
     )
@@ -190,7 +195,17 @@ def create_payment_features(df):
         .mean()
     )
 
-    return df
+    df["collection_rate_lag_1"] = (
+        df["weekly_payments"].shift(1) /
+        df["weekly_revenue"].shift(1).replace(0, np.nan)
+    )
+
+    df["outstanding_lag_1"] = (
+        df["weekly_revenue"].shift(1) -
+        df["weekly_payments"].shift(1)
+    )
+    
+    return df 
 # ==========================================================
 # Calendar Features
 # ==========================================================
@@ -225,33 +240,16 @@ def create_calendar_features(df):
 def clean_dataset(df):
 
     drop_columns = [
-
-        "active_customers",
-
-        "invoice_count",
-
-        "average_invoice",
-
-        "weekly_payments",
-
-        "average_payment",
-
-        "month",
-
-        "quarter",
-
-        "week_of_year",
-
+    "active_customers",
+    "invoice_count",
+    "average_invoice",
+    "weekly_payments",
+    "average_payment",
     ]
 
     df = df.drop(
         columns=drop_columns,
         errors="ignore",
-    )
-
-    df = df.replace(
-        [np.inf, -np.inf],
-        np.nan,
     )
 
     df = df.replace(
@@ -368,10 +366,19 @@ def main() -> None:
         validate_input(df)
 
         df = create_revenue_features(df)
+        print("Revenue:", type(df))
+
         df = create_customer_features(df)
+        print("Customer:", type(df))
+
         df = create_invoice_features(df)
+        print("Invoice:", type(df))
+
         df = create_payment_features(df)
+        print("Payment:", type(df))
+
         df = create_calendar_features(df)
+        print("Calendar:", type(df))
 
         df = clean_dataset(df)
 
