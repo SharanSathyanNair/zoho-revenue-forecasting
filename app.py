@@ -11,12 +11,10 @@ from utils import (
     load_history,
     get_forecast,
     calculate_growth,
-    load_model_health,
 )
 
-
 # ==========================================================
-# Page
+# Page Configuration
 # ==========================================================
 
 st.set_page_config(
@@ -26,21 +24,6 @@ st.set_page_config(
 )
 
 st.title("📈 Zoho Revenue Forecasting Dashboard")
-
-# ==========================================================
-# Model Health / Drift Warning
-# ==========================================================
-
-model_health = load_model_health()
-
-if model_health is not None and model_health.get("drift_detected"):
-    st.warning(
-        f"⚠️ Model drift detected — recent prediction stability is "
-        f"{model_health['model_stability']:.1f}% (below the 75% threshold). "
-        f"Forecasts and confidence intervals below may be less reliable than "
-        f"usual. Consider retraining the model on more recent data.",
-        icon="⚠️",
-    )
 
 st.markdown("---")
 
@@ -55,25 +38,32 @@ forecast_type = st.sidebar.radio(
     [
         "Weeks",
         "Months",
-    ]
+    ],
 )
 
 if forecast_type == "Weeks":
-  forecast_value = st.sidebar.slider(
-      "Weeks Ahead",
-      1,
-      52,
-      26,
-  )
+
+    forecast_value = st.sidebar.slider(
+        "Weeks Ahead",
+        min_value=1,
+        max_value=52,
+        value=26,
+    )
 
 else:
-  forecast_value = st.sidebar.slider(
-    "Months Ahead",
-    1,
-    12,
-    6,
-  )
 
+    forecast_value = st.sidebar.slider(
+        "Months Ahead",
+        min_value=1,
+        max_value=12,
+        value=6,
+    )
+
+# ==========================================================
+# Fixed Confidence
+# ==========================================================
+
+confidence = "95%"
 
 # ==========================================================
 # Load Data
@@ -90,7 +80,7 @@ current, future, growth = calculate_growth(
     history,
     forecast,
 )
-confidence = "95%"
+
 # ==========================================================
 # KPI Cards
 # ==========================================================
@@ -113,8 +103,11 @@ last_history = history.iloc[[-1]].copy()
 last_history["lower_bound"] = np.nan
 last_history["upper_bound"] = np.nan
 
-forecast = pd.concat(
-    [last_history, forecast],
+forecast_plot = pd.concat(
+    [
+        last_history,
+        forecast,
+    ],
     ignore_index=True,
 )
 
@@ -124,22 +117,25 @@ forecast = pd.concat(
 
 forecast_chart(
     history,
-    forecast,
-    forecast["lower_bound"],
-    forecast["upper_bound"],
-    
+    forecast_plot,
+    forecast_plot["lower_bound"],
+    forecast_plot["upper_bound"],
 )
 
 # ==========================================================
 # Forecast Table
 # ==========================================================
 
-table = forecast[
+st.subheader("Forecast")
+
+table = forecast.copy()
+
+table = table[
     [
         "week",
         "weekly_revenue",
     ]
-].copy()
+]
 
 table.columns = [
     "Week",
@@ -169,8 +165,8 @@ st.dataframe(
 # ==========================================================
 
 st.download_button(
-    "Download Forecast CSV",
-    forecast.to_csv(index=False),
-    "forecast.csv",
-    "text/csv",
+    label="📥 Download Forecast CSV",
+    data=forecast.to_csv(index=False),
+    file_name="forecast.csv",
+    mime="text/csv",
 )

@@ -1,418 +1,418 @@
 customer_id,customer_name,created_time,status,payment_terms
-CUST0001,Jones PLC,2022-01-03,inactive,15
-CUST0002,"Smith, Moreno and Barnes",2022-01-03,inactive,30
-CUST0003,Lee-Johnson,2022-01-03,active,15
-CUST0004,"Fowler, May and Murray",2022-01-03,inactive,15
-CUST0005,Massey Inc,2022-01-03,inactive,15
-CUST0006,Decker Ltd,2022-01-03,active,30
-CUST0007,Hicks Inc,2022-01-03,active,15
-CUST0008,Smith PLC,2022-01-03,active,60
-CUST0009,Navarro-Vazquez,2022-01-03,active,45
-CUST0010,Walker LLC,2022-01-03,active,15
-CUST0011,Kennedy Ltd,2022-01-03,inactive,30
-CUST0012,Williams and Sons,2022-01-03,active,45
-CUST0013,Wright-Mueller,2022-01-03,active,30
-CUST0014,White-Walker,2022-01-03,inactive,45
-CUST0015,Wallace-Brown,2022-01-03,active,60
-CUST0016,Warren-Lester,2022-01-03,active,45
-CUST0017,Bates Ltd,2022-01-03,inactive,15
-CUST0018,"Perez, Valdez and Gomez",2022-01-03,active,15
-CUST0019,"Kramer, Ward and Hansen",2022-01-03,inactive,60
-CUST0020,Simon LLC,2022-01-03,inactive,45
-CUST0021,Ingram-Sullivan,2022-01-03,inactive,45
-CUST0022,Henry Ltd,2022-01-03,inactive,15
-CUST0023,"Lee, Johnson and Anderson",2022-01-03,active,30
-CUST0024,Estrada-Miller,2022-01-03,inactive,15
-CUST0025,Clay and Sons,2022-01-03,inactive,15
-CUST0026,Terry-Stewart,2022-01-03,active,60
-CUST0027,"Gutierrez, Spears and White",2022-01-03,inactive,45
-CUST0028,Copeland PLC,2022-01-03,inactive,45
-CUST0029,"Higgins, Cox and Taylor",2022-01-03,inactive,45
-CUST0030,"Schwartz, Miller and Wiggins",2022-01-03,inactive,15
-CUST0031,Brown-Buck,2022-01-03,active,30
-CUST0032,"Webster, Levy and Brown",2022-01-03,active,30
-CUST0033,Jones Ltd,2022-01-03,active,60
-CUST0034,"Cervantes, Dennis and Gray",2022-01-03,active,30
-CUST0035,Jones and Sons,2022-01-03,inactive,15
-CUST0036,Warner LLC,2022-01-03,active,15
-CUST0037,"Baker, Rose and Williams",2022-01-03,inactive,60
-CUST0038,Moss-Craig,2022-01-03,inactive,30
-CUST0039,"Velasquez, Decker and Carr",2022-01-03,inactive,45
-CUST0040,Stewart-Weaver,2022-01-03,active,60
-CUST0041,"Garza, Scott and Jackson",2022-01-03,active,60
-CUST0042,Silva-Rojas,2022-01-03,active,30
-CUST0043,Meyer-Wilson,2022-01-03,active,45
-CUST0044,Fisher-Lowery,2022-01-03,active,60
-CUST0045,Small-Perry,2022-01-03,inactive,60
-CUST0046,Grant Inc,2022-01-03,active,30
-CUST0047,Anderson-Kirby,2022-01-03,inactive,15
-CUST0048,Watson-Dawson,2022-01-03,active,15
-CUST0049,Jenkins-Butler,2022-01-03,active,30
-CUST0050,"Rojas, Swanson and Miller",2022-01-03,inactive,60
-CUST0051,Hill Ltd,2022-01-03,inactive,60
-CUST0052,Mckenzie-Gonzales,2022-01-03,inactive,60
-CUST0053,Nichols-Baker,2022-01-03,active,15
-CUST0054,Wood LLC,2022-01-03,inactive,15
-CUST0055,Jensen Ltd,2022-01-03,active,45
-CUST0056,Olson Ltd,2022-01-03,inactive,45
-CUST0057,Green-Bailey,2022-01-03,active,60
-CUST0058,"Cook, Mckenzie and Adams",2022-01-03,inactive,15
-CUST0059,Moreno-Mendoza,2022-01-03,inactive,45
-CUST0060,Pierce LLC,2022-01-03,inactive,30
-CUST0061,Sanchez-Sanchez,2022-01-03,active,15
-CUST0062,"Anderson, Hubbard and Shelton",2022-01-03,inactive,45
-CUST0063,Wright-Hall,2022-01-03,inactive,30
-CUST0064,"Herring, Johnson and Mccarty",2022-01-03,inactive,30
-CUST0065,Marshall-Phillips,2022-01-03,active,15
-CUST0066,Giles-Ward,2022-01-03,active,60
-CUST0067,"Hernandez, Horne and Duffy",2022-01-03,active,45
-CUST0068,"Walter, Butler and Grant",2022-01-03,inactive,45
-CUST0069,Lee Ltd,2022-01-03,active,30
-CUST0070,Shaw and Sons,2022-01-03,inactive,15
-CUST0071,Carter and Sons,2022-01-03,active,60
-CUST0072,"Maldonado, King and Mayo",2022-01-03,active,30
-CUST0073,"Ford, Rodriguez and Marquez",2022-01-03,active,60
-CUST0074,Jones LLC,2022-01-03,inactive,30
-CUST0075,Morton Inc,2022-01-03,inactive,60
-CUST0076,Williamson Group,2022-01-03,inactive,30
-CUST0077,Miller-Ellis,2022-01-03,active,60
-CUST0078,Wright LLC,2022-01-03,inactive,45
-CUST0079,Gutierrez PLC,2022-01-03,active,60
-CUST0080,Meyer-Velasquez,2022-01-03,active,30
-CUST0081,Morrison LLC,2022-01-03,inactive,15
-CUST0082,"Singh, Murphy and Rollins",2022-01-03,active,30
-CUST0083,"Burke, Le and Thomas",2022-01-03,active,15
-CUST0084,"Williams, Perry and Durham",2022-01-03,active,15
-CUST0085,Martin Ltd,2022-01-03,active,15
-CUST0086,Munoz Ltd,2022-01-03,inactive,15
-CUST0087,Anderson-Robbins,2022-01-03,active,45
-CUST0088,Pope Group,2022-01-03,inactive,30
-CUST0089,"Brown, Stone and Thornton",2022-01-03,active,60
-CUST0090,"English, Smith and Morgan",2022-01-03,active,60
-CUST0091,Lawrence-Alexander,2022-01-03,inactive,30
-CUST0092,Butler-Kelly,2022-01-03,active,60
-CUST0093,"Morales, Brown and Bautista",2022-01-03,inactive,60
-CUST0094,Nguyen Inc,2022-01-03,active,15
-CUST0095,Gonzalez-Stewart,2022-01-03,active,15
-CUST0096,Smith-Waller,2022-01-03,active,45
-CUST0097,Santana-Gonzalez,2022-01-03,inactive,15
-CUST0098,"Barber, Blair and Miranda",2022-01-03,active,30
-CUST0099,Coleman-Anderson,2022-01-03,inactive,30
-CUST0100,"Sherman, Dawson and Le",2022-01-03,active,45
-CUST0101,"Martinez, Jones and Cowan",2022-01-03,active,15
-CUST0102,Anderson-Beasley,2022-01-03,active,15
-CUST0103,"Hicks, Rogers and Bennett",2022-01-03,active,15
-CUST0104,"Reynolds, Williams and Guerrero",2022-01-03,inactive,30
-CUST0105,Brown-Davis,2022-01-03,inactive,60
-CUST0106,Moore-Burns,2022-01-03,active,60
-CUST0107,Harmon Group,2022-01-03,active,30
-CUST0108,Sharp PLC,2022-01-03,active,60
-CUST0109,"Garner, Smith and Scott",2022-01-03,active,60
-CUST0110,"Anderson, Beck and Brown",2022-01-03,inactive,60
-CUST0111,"Strickland, Simmons and Rogers",2022-01-03,inactive,45
-CUST0112,Schroeder PLC,2022-01-03,active,15
-CUST0113,Stokes PLC,2022-01-03,active,15
-CUST0114,Foster-Huffman,2022-01-03,inactive,15
-CUST0115,"Allen, Meyer and Mckinney",2022-01-03,inactive,60
-CUST0116,Riley-Roberts,2022-01-03,inactive,30
-CUST0117,Waters-Joyce,2022-01-03,active,15
-CUST0118,Bell Inc,2022-01-03,inactive,15
-CUST0119,Garrett Group,2022-01-03,inactive,30
-CUST0120,Lindsey-Hogan,2022-01-03,active,30
-CUST0121,Holt-Alvarado,2022-01-03,active,15
-CUST0122,Galvan Ltd,2022-01-03,inactive,60
-CUST0123,Mays LLC,2022-01-03,active,45
-CUST0124,"Johnson, Ortiz and Sanders",2022-01-03,inactive,30
-CUST0125,Townsend PLC,2022-01-03,active,45
-CUST0126,Murray-Romero,2022-01-03,active,60
-CUST0127,Everett-Tran,2022-01-03,active,45
-CUST0128,"Perkins, Kemp and Lin",2022-01-03,active,15
-CUST0129,"Smith, Burton and Anderson",2022-01-03,active,15
-CUST0130,Martinez LLC,2022-01-03,active,30
-CUST0131,Fields-Fritz,2022-01-03,active,30
-CUST0132,"Fletcher, Martinez and Clarke",2022-01-03,inactive,15
-CUST0133,"Gutierrez, Arnold and Cox",2022-01-03,active,45
-CUST0134,Thompson-Perkins,2022-01-03,active,60
-CUST0135,Hurley LLC,2022-01-03,inactive,45
-CUST0136,Parker and Sons,2022-01-03,inactive,15
-CUST0137,Moore and Sons,2022-01-03,inactive,45
-CUST0138,Mcgrath Group,2022-01-03,inactive,15
-CUST0139,"Price, Moran and Boyd",2022-01-03,inactive,30
-CUST0140,"Mcneil, Gonzalez and Reyes",2022-01-03,inactive,15
-CUST0141,Harrison-Carter,2022-01-03,active,30
-CUST0142,"Frazier, Martinez and Hill",2022-01-03,active,30
-CUST0143,"Wallace, Hopkins and Ochoa",2022-01-03,inactive,30
-CUST0144,Mcmahon and Sons,2022-01-03,inactive,45
-CUST0145,Butler Inc,2022-01-03,inactive,45
-CUST0146,Thomas-Johnson,2022-01-03,inactive,15
-CUST0147,Buck PLC,2022-01-03,inactive,60
-CUST0148,Cannon-Walters,2022-01-03,inactive,15
-CUST0149,Morris-Mcknight,2022-01-03,active,30
-CUST0150,Johnson-Sanchez,2022-01-03,inactive,45
-CUST0151,"Graham, Gutierrez and Griffith",2022-01-03,active,60
-CUST0152,Jones Group,2022-01-03,active,60
-CUST0153,"Green, Paul and Lozano",2022-01-03,active,15
-CUST0154,"Graham, Torres and Skinner",2022-01-03,active,30
-CUST0155,Hunter-Pineda,2022-01-03,inactive,45
-CUST0156,Allen-Rodriguez,2022-01-03,inactive,30
-CUST0157,Morgan-Garcia,2022-01-03,active,15
-CUST0158,"Cooper, Palmer and Reed",2022-01-03,inactive,15
-CUST0159,"Jones, Cooper and Zavala",2022-01-03,inactive,30
-CUST0160,Hood-Burns,2022-01-03,active,15
-CUST0161,Cisneros-Garza,2022-01-03,active,60
-CUST0162,Frazier and Sons,2022-01-03,active,30
-CUST0163,Chavez-Jennings,2022-01-03,inactive,30
-CUST0164,Cobb and Sons,2022-01-03,inactive,30
-CUST0165,Hall Inc,2022-01-03,inactive,15
-CUST0166,Cunningham and Sons,2022-01-03,active,45
-CUST0167,Henry-Vazquez,2022-01-03,inactive,60
-CUST0168,"Malone, Bradshaw and Johnson",2022-01-03,active,30
-CUST0169,Whitney-Hernandez,2022-01-03,active,15
-CUST0170,Johnson Group,2022-01-03,active,15
-CUST0171,"Brady, Moreno and Stanley",2022-01-03,active,30
-CUST0172,Jacobs Ltd,2022-01-03,inactive,60
-CUST0173,"Garcia, Poole and Henson",2022-01-03,active,30
-CUST0174,Brown-Montgomery,2022-01-03,active,30
-CUST0175,"Martin, Shea and Mayo",2022-01-03,active,45
-CUST0176,Lee-Bell,2022-01-03,inactive,45
-CUST0177,Williams-Hernandez,2022-01-03,inactive,60
-CUST0178,"Nelson, Brown and Watson",2022-01-03,active,45
-CUST0179,Ramirez Inc,2022-01-03,inactive,15
-CUST0180,Garza-Ballard,2022-01-03,inactive,45
-CUST0181,Ward Ltd,2022-01-03,active,45
-CUST0182,Castaneda-Sosa,2022-01-03,active,60
-CUST0183,Roberts Group,2022-01-03,inactive,45
-CUST0184,Brown-Wright,2022-01-03,active,15
-CUST0185,Christensen PLC,2022-01-03,inactive,30
-CUST0186,May-Barrera,2022-01-03,active,60
-CUST0187,Alexander and Sons,2022-01-03,active,30
-CUST0188,Lester and Sons,2022-01-03,inactive,15
-CUST0189,"Clark, Davis and Bailey",2022-01-03,inactive,45
-CUST0190,"Donaldson, Schultz and Clarke",2022-01-03,inactive,15
-CUST0191,"Brown, Thompson and Gilbert",2022-01-03,inactive,45
-CUST0192,Combs and Sons,2022-01-03,active,60
-CUST0193,Johnson-Daniel,2022-01-03,active,45
-CUST0194,"Wright, Hickman and Williams",2022-01-03,active,30
-CUST0195,"Barton, Meyer and Perez",2022-01-03,active,60
-CUST0196,Mckinney-Lopez,2022-01-03,active,30
-CUST0197,Miller-Baker,2022-01-03,active,45
-CUST0198,Melton-Cline,2022-01-03,active,15
-CUST0199,Davidson-Hall,2022-01-03,inactive,30
-CUST0200,"Brown, Herman and King",2022-01-03,active,45
-CUST0201,Ramos-Wilson,2022-01-03,active,60
-CUST0202,"Grant, Delacruz and Frazier",2022-01-03,inactive,60
-CUST0203,Moore PLC,2022-01-03,active,30
-CUST0204,Proctor and Sons,2022-01-03,inactive,45
-CUST0205,Humphrey Ltd,2022-01-03,active,45
-CUST0206,Carter PLC,2022-01-03,inactive,30
-CUST0207,Gomez-Ferrell,2022-01-03,active,30
-CUST0208,"Jones, Andrade and Castillo",2022-01-03,inactive,30
-CUST0209,James LLC,2022-01-03,active,30
-CUST0210,Smith-Owen,2022-01-03,inactive,15
-CUST0211,"Phillips, Harper and Garcia",2022-01-03,inactive,30
-CUST0212,"Graham, Bailey and Davis",2022-01-03,inactive,60
-CUST0213,"Young, Jones and Carlson",2022-01-03,active,30
-CUST0214,Hampton Ltd,2022-01-03,active,15
-CUST0215,"Lee, Green and Fowler",2022-01-03,inactive,15
-CUST0216,Rowland Inc,2022-01-03,active,30
-CUST0217,King-Barron,2022-01-03,inactive,60
-CUST0218,Conley-Elliott,2022-01-03,active,30
-CUST0219,Bradley-Andrews,2022-01-03,inactive,15
-CUST0220,Sanders and Sons,2022-01-03,active,60
-CUST0221,Torres-Peterson,2022-01-03,active,45
-CUST0222,"Robbins, Kennedy and Wells",2022-01-10,inactive,60
-CUST0223,Rodriguez PLC,2022-01-10,active,60
-CUST0224,Owens LLC,2022-01-17,active,15
-CUST0225,Barker Ltd,2022-01-17,inactive,45
-CUST0226,Escobar Inc,2022-01-17,inactive,30
-CUST0227,Williams-Bowman,2022-01-24,active,30
-CUST0228,"West, Khan and Wagner",2022-01-31,active,45
-CUST0229,Dominguez Ltd,2022-02-07,active,15
-CUST0230,Reid-Roberts,2022-02-07,active,60
-CUST0231,Neal Group,2022-02-14,inactive,15
-CUST0232,Page Ltd,2022-02-14,inactive,60
-CUST0233,Foster-Crawford,2022-02-14,inactive,60
-CUST0234,Sullivan PLC,2022-02-21,active,60
-CUST0235,Williams Inc,2022-02-28,active,45
-CUST0236,Brooks-Brandt,2022-03-07,inactive,30
-CUST0237,Bailey PLC,2022-03-14,inactive,15
-CUST0238,Smith-Crosby,2022-03-14,inactive,60
-CUST0239,Mathis-Thompson,2022-03-21,active,30
-CUST0240,Scott Ltd,2022-03-21,active,30
-CUST0241,Cooke-Hodges,2022-03-28,active,30
-CUST0242,"Hunter, Morales and Jimenez",2022-03-28,active,60
-CUST0243,Lowe-Williams,2022-03-28,inactive,30
-CUST0244,Dalton and Sons,2022-04-04,active,45
-CUST0245,"Elliott, Hawkins and Jackson",2022-04-11,inactive,30
-CUST0246,"Webb, Hoffman and Fox",2022-04-11,active,30
-CUST0247,"Carroll, Warren and Lee",2022-04-11,inactive,30
-CUST0248,Decker-Martin,2022-04-11,inactive,30
-CUST0249,Richardson-Graham,2022-04-18,active,15
-CUST0250,Molina-Khan,2022-04-18,inactive,15
-CUST0251,"Mejia, Davis and Davis",2022-04-18,inactive,15
-CUST0252,"Bridges, Wu and Torres",2022-05-02,inactive,15
-CUST0253,Fields PLC,2022-05-30,active,45
-CUST0254,Jensen Group,2022-06-06,active,30
-CUST0255,"Salazar, Smith and Alvarado",2022-06-06,active,45
-CUST0256,Burke-Gomez,2022-06-20,inactive,30
-CUST0257,Garcia LLC,2022-06-27,active,45
-CUST0258,Guzman and Sons,2022-07-04,active,15
-CUST0259,"Martinez, Ryan and Mooney",2022-07-04,active,45
-CUST0260,Pierce Inc,2022-07-11,inactive,45
-CUST0261,Marshall PLC,2022-07-11,active,15
-CUST0262,"Dominguez, Daugherty and Mills",2022-07-11,inactive,45
-CUST0263,Luna-Mccann,2022-07-18,active,15
-CUST0264,"Bond, Taylor and Hill",2022-07-25,active,30
-CUST0265,Thompson-Miller,2022-08-15,active,45
-CUST0266,Price-Garza,2022-08-15,active,30
-CUST0267,Bruce LLC,2022-08-22,active,60
-CUST0268,Mckinney-Sanders,2022-08-22,active,60
-CUST0269,"Hall, Li and Goodman",2022-08-22,inactive,15
-CUST0270,White Ltd,2022-08-29,active,60
-CUST0271,"Stephens, Turner and Turner",2022-09-05,active,45
-CUST0272,Gray Inc,2022-09-12,active,45
-CUST0273,"Cummings, Moss and Cooke",2022-09-12,active,30
-CUST0274,"Hamilton, Johnson and Harrison",2022-09-12,active,60
-CUST0275,Porter and Sons,2022-09-19,inactive,30
-CUST0276,"Smith, Fisher and Brown",2022-09-19,active,15
-CUST0277,"Bautista, Baldwin and Smith",2022-09-26,active,30
-CUST0278,Farley Inc,2022-10-10,active,30
-CUST0279,"Delgado, Fox and Park",2022-10-24,inactive,15
-CUST0280,Miller LLC,2022-10-24,active,45
-CUST0281,"Schultz, Mahoney and Cummings",2022-10-31,active,15
-CUST0282,Levine and Sons,2022-10-31,active,30
-CUST0283,Lee Ltd,2022-10-31,active,45
-CUST0284,Fletcher-Allen,2022-10-31,active,60
-CUST0285,"Lloyd, Castillo and Murphy",2022-10-31,active,60
-CUST0286,Lee Group,2022-11-07,active,45
-CUST0287,Martin-Fry,2022-11-07,active,60
-CUST0288,"Lewis, Quinn and Roberts",2022-11-07,inactive,60
-CUST0289,Johnson-Coleman,2022-11-14,active,15
-CUST0290,Davis LLC,2022-11-21,active,15
-CUST0291,Roman-Kelley,2022-11-21,inactive,30
-CUST0292,Thomas-Ruiz,2022-12-05,inactive,30
-CUST0293,"Morrow, Duffy and Cunningham",2022-12-12,active,30
-CUST0294,"Fisher, Lewis and Shepherd",2022-12-12,active,60
-CUST0295,Irwin-Sullivan,2022-12-26,inactive,15
-CUST0296,Gutierrez-Walls,2023-01-02,active,60
-CUST0297,Reed and Sons,2023-01-16,inactive,30
-CUST0298,Vaughn LLC,2023-01-16,active,60
-CUST0299,"Lee, Marshall and Weiss",2023-01-16,inactive,30
-CUST0300,"Rios, Smith and Duran",2023-01-23,active,60
-CUST0301,Butler-Coleman,2023-01-23,active,30
-CUST0302,Flores-Pena,2023-01-30,active,45
-CUST0303,Mccullough-Ramsey,2023-02-06,active,30
-CUST0304,Jones Inc,2023-02-06,active,15
-CUST0305,Robles-Aguirre,2023-02-20,inactive,60
-CUST0306,Jones LLC,2023-02-27,active,30
-CUST0307,Hess Ltd,2023-03-06,inactive,30
-CUST0308,Hurst Ltd,2023-03-13,inactive,45
-CUST0309,Parker LLC,2023-03-13,active,15
-CUST0310,Clarke and Sons,2023-04-17,inactive,15
-CUST0311,"Nelson, Phelps and Huerta",2023-04-17,active,60
-CUST0312,Miller PLC,2023-05-01,active,60
-CUST0313,Jimenez-Hardin,2023-05-08,active,15
-CUST0314,Allen-Bartlett,2023-05-22,active,45
-CUST0315,Stone-Proctor,2023-05-29,active,30
-CUST0316,Banks LLC,2023-06-05,active,15
-CUST0317,Hernandez PLC,2023-06-26,inactive,30
-CUST0318,Hendricks-Reed,2023-06-26,active,15
-CUST0319,Ortega-Charles,2023-07-10,active,60
-CUST0320,Martinez PLC,2023-07-10,active,60
-CUST0321,Chavez-Jackson,2023-07-10,inactive,60
-CUST0322,Aguilar Ltd,2023-07-17,active,15
-CUST0323,Atkinson-Haas,2023-07-17,active,45
-CUST0324,Jensen LLC,2023-08-07,active,15
-CUST0325,Stewart and Sons,2023-08-21,active,45
-CUST0326,Smith-Johnson,2023-09-04,inactive,45
-CUST0327,"Cochran, Nguyen and Stewart",2023-09-04,active,15
-CUST0328,Martin and Sons,2023-09-18,inactive,15
-CUST0329,Webb PLC,2023-09-18,active,30
-CUST0330,"Montgomery, Berger and Gilbert",2023-09-25,inactive,45
-CUST0331,Black-Travis,2023-09-25,inactive,60
-CUST0332,King-Schwartz,2023-10-02,active,15
-CUST0333,"Jenkins, Carlson and Hill",2023-10-16,active,45
-CUST0334,"Moore, Doyle and Brady",2023-10-23,active,60
-CUST0335,George and Sons,2023-11-06,active,60
-CUST0336,Williams and Sons,2023-11-06,inactive,45
-CUST0337,Merritt-Benson,2023-11-06,active,15
-CUST0338,Baker Group,2023-11-13,active,30
-CUST0339,Allen Inc,2023-11-20,active,30
-CUST0340,"Olson, Hernandez and Blair",2023-11-27,active,15
-CUST0341,"Bailey, Hughes and Gibson",2024-01-01,active,15
-CUST0342,Harris and Sons,2024-01-08,active,30
-CUST0343,Brooks-Gutierrez,2024-01-15,inactive,45
-CUST0344,Guzman Ltd,2024-01-15,inactive,15
-CUST0345,Doyle Inc,2024-01-15,active,60
-CUST0346,"Mckinney, Stout and Webb",2024-01-15,inactive,60
-CUST0347,"Franklin, Simmons and Miller",2024-01-22,active,30
-CUST0348,Bradford-Andrews,2024-01-29,active,15
-CUST0349,"Shelton, Robbins and Carlson",2024-02-12,active,45
-CUST0350,"Benson, Scott and Rodriguez",2024-02-26,inactive,30
-CUST0351,Stevens Group,2024-03-11,active,60
-CUST0352,Berger-Mcdonald,2024-03-11,inactive,30
-CUST0353,Nelson and Sons,2024-04-15,active,45
-CUST0354,Baxter-Herman,2024-04-29,active,30
-CUST0355,Munoz and Sons,2024-05-06,active,15
-CUST0356,Morris and Sons,2024-05-06,active,30
-CUST0357,Morgan Ltd,2024-05-20,active,15
-CUST0358,Moody Group,2024-05-27,inactive,15
-CUST0359,Williamson LLC,2024-05-27,active,60
-CUST0360,Bruce Ltd,2024-06-10,active,60
-CUST0361,"Barton, West and Newton",2024-06-10,active,60
-CUST0362,Rios Inc,2024-06-24,active,30
-CUST0363,"Williams, Martinez and Smith",2024-06-24,inactive,60
-CUST0364,Boyd-Shelton,2024-07-15,active,15
-CUST0365,Johnson-Baldwin,2024-07-22,active,30
-CUST0366,Smith Inc,2024-07-22,active,15
-CUST0367,Duke and Sons,2024-07-29,active,30
-CUST0368,Huang-Patterson,2024-07-29,inactive,30
-CUST0369,Frazier Group,2024-09-30,active,60
-CUST0370,"Mccall, Scott and Hunt",2024-10-07,active,45
-CUST0371,"Anderson, Schneider and Horn",2024-10-14,active,15
-CUST0372,Anderson-Harrell,2024-10-21,active,45
-CUST0373,Mays and Sons,2024-10-28,active,15
-CUST0374,Stevens-Mendoza,2024-10-28,inactive,30
-CUST0375,Haynes PLC,2024-11-04,inactive,60
-CUST0376,Sanchez Group,2024-12-02,inactive,45
-CUST0377,Lawson-Escobar,2024-12-09,active,60
-CUST0378,Watts-Gentry,2024-12-30,active,45
-CUST0379,"Greer, Guzman and Garrett",2025-01-06,active,30
-CUST0380,"Griffith, Nelson and Pacheco",2025-01-13,active,30
-CUST0381,Harrison-Wright,2025-01-20,active,15
-CUST0382,"Potter, Mclaughlin and Cook",2025-01-20,active,15
-CUST0383,Baldwin Ltd,2025-02-03,active,30
-CUST0384,Travis-Ballard,2025-02-03,active,15
-CUST0385,Watson and Sons,2025-02-10,active,60
-CUST0386,Hale-Boone,2025-03-03,active,15
-CUST0387,"Williams, Brown and Alexander",2025-03-10,active,15
-CUST0388,Sherman PLC,2025-03-17,active,60
-CUST0389,Alvarez Inc,2025-04-07,active,15
-CUST0390,"Zavala, Kerr and Henry",2025-04-07,active,30
-CUST0391,"White, Hogan and Mercado",2025-04-14,active,45
-CUST0392,"Jenkins, Anthony and Kent",2025-04-21,active,45
-CUST0393,Brown-Moore,2025-05-05,active,60
-CUST0394,Marquez-Porter,2025-05-12,active,30
-CUST0395,Lynch-Rodriguez,2025-05-12,active,15
-CUST0396,Mcclure-Cox,2025-06-02,active,30
-CUST0397,Castillo-Welch,2025-06-30,active,30
-CUST0398,Franco PLC,2025-06-30,active,30
-CUST0399,Gomez PLC,2025-07-07,active,45
-CUST0400,"Turner, Vargas and Potter",2025-07-07,active,45
-CUST0401,Mitchell-Williams,2025-07-14,active,60
-CUST0402,"Liu, Gonzalez and Gomez",2025-07-14,active,60
-CUST0403,Henderson-Mejia,2025-08-04,active,45
-CUST0404,Donovan-Molina,2025-08-18,inactive,30
-CUST0405,"Taylor, Kramer and Erickson",2025-09-01,active,15
-CUST0406,Scott LLC,2025-09-15,active,30
-CUST0407,"Smith, Williams and Payne",2025-09-29,active,60
-CUST0408,Dean-Hall,2025-09-29,active,30
-CUST0409,"Nguyen, Rogers and Mcclain",2025-09-29,active,30
-CUST0410,Perez Inc,2025-10-13,active,15
-CUST0411,Wolf-Brown,2025-10-13,active,15
-CUST0412,"Gibbs, Carroll and Mullen",2025-10-20,active,15
-CUST0413,Collins Group,2025-11-10,active,60
-CUST0414,Anderson LLC,2025-11-17,active,45
-CUST0415,Pena-Ochoa,2025-11-24,active,45
-CUST0416,Oliver Inc,2025-11-24,active,45
-CUST0417,Nichols PLC,2025-12-08,active,30
+CUST0001,Reid and Sons,2022-01-03,inactive,15
+CUST0002,Glover Group,2022-01-03,inactive,30
+CUST0003,"Powell, Brown and Rivera",2022-01-03,active,15
+CUST0004,Wilson Inc,2022-01-03,inactive,15
+CUST0005,Arnold-Huynh,2022-01-03,inactive,15
+CUST0006,"Hoffman, Lewis and Bennett",2022-01-03,active,30
+CUST0007,Johnson Ltd,2022-01-03,active,15
+CUST0008,Smith-Murphy,2022-01-03,active,60
+CUST0009,Mccarty LLC,2022-01-03,active,45
+CUST0010,"Rodriguez, Salazar and Stout",2022-01-03,active,15
+CUST0011,Rodriguez-Reyes,2022-01-03,inactive,30
+CUST0012,"Page, Stafford and Fisher",2022-01-03,active,45
+CUST0013,Sanchez Ltd,2022-01-03,active,30
+CUST0014,"Morrison, Morales and Andrade",2022-01-03,inactive,45
+CUST0015,Patterson Ltd,2022-01-03,active,60
+CUST0016,Wilkinson and Sons,2022-01-03,active,45
+CUST0017,Garcia LLC,2022-01-03,inactive,15
+CUST0018,Rodriguez Ltd,2022-01-03,active,15
+CUST0019,"Smith, Newton and Rice",2022-01-03,inactive,60
+CUST0020,"Allen, Chavez and Kirk",2022-01-03,inactive,45
+CUST0021,"Nunez, Lopez and Espinoza",2022-01-03,inactive,45
+CUST0022,Briggs-Esparza,2022-01-03,inactive,15
+CUST0023,Patterson-Walton,2022-01-03,active,30
+CUST0024,"Ryan, Scott and Spencer",2022-01-03,inactive,15
+CUST0025,Chase-Weaver,2022-01-03,inactive,15
+CUST0026,Craig-Weber,2022-01-03,active,60
+CUST0027,Barton PLC,2022-01-03,inactive,45
+CUST0028,"Adams, Henderson and Baird",2022-01-03,inactive,45
+CUST0029,"Williams, Dean and Ellison",2022-01-03,inactive,45
+CUST0030,Fischer-Mcguire,2022-01-03,inactive,15
+CUST0031,Dyer Group,2022-01-03,active,30
+CUST0032,"Poole, Turner and Montgomery",2022-01-03,active,30
+CUST0033,Hernandez-Fisher,2022-01-03,active,60
+CUST0034,Kim-Jackson,2022-01-03,active,30
+CUST0035,Walker-Gardner,2022-01-03,inactive,15
+CUST0036,"Hunt, Gomez and Crawford",2022-01-03,active,15
+CUST0037,Green-Contreras,2022-01-03,inactive,60
+CUST0038,Mcdonald PLC,2022-01-03,inactive,30
+CUST0039,"Stewart, Ellis and Mcmillan",2022-01-03,inactive,45
+CUST0040,Hanson-Murray,2022-01-03,active,60
+CUST0041,Baker-Russo,2022-01-03,active,60
+CUST0042,Tanner-Quinn,2022-01-03,active,30
+CUST0043,Chavez LLC,2022-01-03,active,45
+CUST0044,Burns-Olson,2022-01-03,active,60
+CUST0045,"Wilson, Mendoza and Anderson",2022-01-03,inactive,60
+CUST0046,Moore LLC,2022-01-03,active,30
+CUST0047,Wang PLC,2022-01-03,inactive,15
+CUST0048,"Rich, Mitchell and Gay",2022-01-03,active,15
+CUST0049,Norris and Sons,2022-01-03,active,30
+CUST0050,Garza-Garcia,2022-01-03,inactive,60
+CUST0051,Richardson Inc,2022-01-03,inactive,60
+CUST0052,Garcia Inc,2022-01-03,inactive,60
+CUST0053,Murphy-Ramos,2022-01-03,active,15
+CUST0054,"Baldwin, Oneill and Deleon",2022-01-03,inactive,15
+CUST0055,"Wood, Hernandez and Carrillo",2022-01-03,active,45
+CUST0056,"Bell, Villegas and Huang",2022-01-03,inactive,45
+CUST0057,Moore LLC,2022-01-03,active,60
+CUST0058,Gill Group,2022-01-03,inactive,15
+CUST0059,"Simpson, Stewart and Gibson",2022-01-03,inactive,45
+CUST0060,Santiago-Dougherty,2022-01-03,inactive,30
+CUST0061,Torres-Moses,2022-01-03,active,15
+CUST0062,Byrd-Vazquez,2022-01-03,inactive,45
+CUST0063,"Kramer, Mann and Bryant",2022-01-03,inactive,30
+CUST0064,Hinton-Chapman,2022-01-03,inactive,30
+CUST0065,Dalton-Hester,2022-01-03,active,15
+CUST0066,Kramer and Sons,2022-01-03,active,60
+CUST0067,"Anderson, Ward and Miller",2022-01-03,active,45
+CUST0068,"Turner, Oconnor and Carpenter",2022-01-03,inactive,45
+CUST0069,Webster Inc,2022-01-03,active,30
+CUST0070,Bullock-Baird,2022-01-03,inactive,15
+CUST0071,Walters and Sons,2022-01-03,active,60
+CUST0072,Tran Group,2022-01-03,active,30
+CUST0073,Blake-Molina,2022-01-03,active,60
+CUST0074,"Ballard, Dominguez and Yoder",2022-01-03,inactive,30
+CUST0075,Castillo-Robles,2022-01-03,inactive,60
+CUST0076,Davis-Rodriguez,2022-01-03,inactive,30
+CUST0077,"Brady, Tate and Pugh",2022-01-03,active,60
+CUST0078,Harris LLC,2022-01-03,inactive,45
+CUST0079,Smith Inc,2022-01-03,active,60
+CUST0080,Sanchez-Luna,2022-01-03,active,30
+CUST0081,"Briggs, Grimes and Solomon",2022-01-03,inactive,15
+CUST0082,Robertson-Clark,2022-01-03,active,30
+CUST0083,"Gonzalez, Garcia and Mitchell",2022-01-03,active,15
+CUST0084,Webb Inc,2022-01-03,active,15
+CUST0085,"Love, Rogers and Krueger",2022-01-03,active,15
+CUST0086,Wilson-Martinez,2022-01-03,inactive,15
+CUST0087,"Pham, Holmes and Moore",2022-01-03,active,45
+CUST0088,Morales-Vasquez,2022-01-03,inactive,30
+CUST0089,Douglas-Morris,2022-01-03,active,60
+CUST0090,Daniels-Benitez,2022-01-03,active,60
+CUST0091,"Thompson, Solis and Lopez",2022-01-03,inactive,30
+CUST0092,"Gordon, Wood and Walker",2022-01-03,active,60
+CUST0093,Wilson-Martinez,2022-01-03,inactive,60
+CUST0094,Huff Group,2022-01-03,active,15
+CUST0095,Mendez LLC,2022-01-03,active,15
+CUST0096,Cook-Gonzalez,2022-01-03,active,45
+CUST0097,"Ferrell, Riley and Carter",2022-01-03,inactive,15
+CUST0098,Kent-Decker,2022-01-03,active,30
+CUST0099,"Boyd, David and Huber",2022-01-03,inactive,30
+CUST0100,"Mays, Harrison and Lamb",2022-01-03,active,45
+CUST0101,Fuller-Kaufman,2022-01-03,active,15
+CUST0102,Moore LLC,2022-01-03,active,15
+CUST0103,Nolan and Sons,2022-01-03,active,15
+CUST0104,"Brown, Gomez and Williams",2022-01-03,inactive,30
+CUST0105,Gould and Sons,2022-01-03,inactive,60
+CUST0106,Torres-George,2022-01-03,active,60
+CUST0107,"Thornton, Patton and Hill",2022-01-03,active,30
+CUST0108,Wise Ltd,2022-01-03,active,60
+CUST0109,Wilson-Young,2022-01-03,active,60
+CUST0110,Ryan PLC,2022-01-03,inactive,60
+CUST0111,Frank-Reilly,2022-01-03,inactive,45
+CUST0112,"Sullivan, Johnson and Romero",2022-01-03,active,15
+CUST0113,Fuller and Sons,2022-01-03,active,15
+CUST0114,Robbins Group,2022-01-03,inactive,15
+CUST0115,Miller Ltd,2022-01-03,inactive,60
+CUST0116,Mendoza-Davidson,2022-01-03,inactive,30
+CUST0117,Christian Group,2022-01-03,active,15
+CUST0118,"Gutierrez, Johnson and Miller",2022-01-03,inactive,15
+CUST0119,"Smith, Davis and Warner",2022-01-03,inactive,30
+CUST0120,Lyons Inc,2022-01-03,active,30
+CUST0121,Baker Group,2022-01-03,active,15
+CUST0122,"Greene, Williams and Brennan",2022-01-03,inactive,60
+CUST0123,Camacho-Werner,2022-01-03,active,45
+CUST0124,Stevens and Sons,2022-01-03,inactive,30
+CUST0125,"Padilla, Simmons and Wade",2022-01-03,active,45
+CUST0126,Williams-Evans,2022-01-03,active,60
+CUST0127,Munoz-Collins,2022-01-03,active,45
+CUST0128,"Navarro, Mcgee and Simmons",2022-01-03,active,15
+CUST0129,Lopez-Valenzuela,2022-01-03,active,15
+CUST0130,Walters Inc,2022-01-03,active,30
+CUST0131,Jackson Group,2022-01-03,active,30
+CUST0132,Oliver-Chandler,2022-01-03,inactive,15
+CUST0133,"Thompson, Olson and Ortega",2022-01-03,active,45
+CUST0134,"Harrison, Medina and Moore",2022-01-03,active,60
+CUST0135,Herrera-Suarez,2022-01-03,inactive,45
+CUST0136,Callahan PLC,2022-01-03,inactive,15
+CUST0137,"Sullivan, Price and Watkins",2022-01-03,inactive,45
+CUST0138,Wells Inc,2022-01-03,inactive,15
+CUST0139,Burch-Kim,2022-01-03,inactive,30
+CUST0140,Young PLC,2022-01-03,inactive,15
+CUST0141,Montgomery Inc,2022-01-03,active,30
+CUST0142,"Mcdaniel, Walker and Haley",2022-01-03,active,30
+CUST0143,"Delgado, Fleming and Oliver",2022-01-03,inactive,30
+CUST0144,"Anderson, Moore and Acosta",2022-01-03,inactive,45
+CUST0145,"Diaz, Brown and Copeland",2022-01-03,inactive,45
+CUST0146,"Fisher, Adams and Lee",2022-01-03,inactive,15
+CUST0147,"Mcknight, Gibson and Moore",2022-01-03,inactive,60
+CUST0148,Thomas-Valdez,2022-01-03,inactive,15
+CUST0149,"Arnold, Phillips and Jones",2022-01-03,active,30
+CUST0150,Gonzales LLC,2022-01-03,inactive,45
+CUST0151,Avila-Johnson,2022-01-03,active,60
+CUST0152,Bailey-Wright,2022-01-03,active,60
+CUST0153,"Preston, Gonzalez and Merritt",2022-01-03,active,15
+CUST0154,Martin Ltd,2022-01-03,active,30
+CUST0155,"Garner, Mullins and Burke",2022-01-03,inactive,45
+CUST0156,Henry-Wright,2022-01-03,inactive,30
+CUST0157,Huff-Love,2022-01-03,active,15
+CUST0158,Owens Inc,2022-01-03,inactive,15
+CUST0159,Murphy PLC,2022-01-03,inactive,30
+CUST0160,Adams PLC,2022-01-03,active,15
+CUST0161,"Foster, Lopez and Ramirez",2022-01-03,active,60
+CUST0162,Garcia-Chapman,2022-01-03,active,30
+CUST0163,"Owen, Smith and Kaiser",2022-01-03,inactive,30
+CUST0164,Cook LLC,2022-01-03,inactive,30
+CUST0165,Thomas Group,2022-01-03,inactive,15
+CUST0166,Diaz Group,2022-01-03,active,45
+CUST0167,Burke-Olsen,2022-01-03,inactive,60
+CUST0168,Contreras-Calhoun,2022-01-03,active,30
+CUST0169,"Preston, Johnson and Morgan",2022-01-03,active,15
+CUST0170,Mccullough-Mason,2022-01-03,active,15
+CUST0171,Walker Group,2022-01-03,active,30
+CUST0172,"Moses, Summers and Orr",2022-01-03,inactive,60
+CUST0173,Jimenez-Wagner,2022-01-03,active,30
+CUST0174,"Hayes, Stevenson and Brown",2022-01-03,active,30
+CUST0175,Francis Group,2022-01-03,active,45
+CUST0176,Schultz-Sanders,2022-01-03,inactive,45
+CUST0177,Hickman Ltd,2022-01-03,inactive,60
+CUST0178,Bright and Sons,2022-01-03,active,45
+CUST0179,Jones-Hodge,2022-01-03,inactive,15
+CUST0180,"Mccormick, Taylor and Bauer",2022-01-03,inactive,45
+CUST0181,Contreras-Molina,2022-01-03,active,45
+CUST0182,"Hines, Taylor and Lopez",2022-01-03,active,60
+CUST0183,Booth-Gomez,2022-01-03,inactive,45
+CUST0184,"Carrillo, Flores and Whitehead",2022-01-03,active,15
+CUST0185,"Bryant, Kidd and Navarro",2022-01-03,inactive,30
+CUST0186,Campbell-Clay,2022-01-03,active,60
+CUST0187,Lucas Ltd,2022-01-03,active,30
+CUST0188,Wallace LLC,2022-01-03,inactive,15
+CUST0189,Foster-Rodriguez,2022-01-03,inactive,45
+CUST0190,"Hall, Green and Armstrong",2022-01-03,inactive,15
+CUST0191,"Serrano, Barrera and Haynes",2022-01-03,inactive,45
+CUST0192,Herrera and Sons,2022-01-03,active,60
+CUST0193,"Stevens, Sanchez and Harris",2022-01-03,active,45
+CUST0194,Singleton-Orozco,2022-01-03,active,30
+CUST0195,Bennett PLC,2022-01-03,active,60
+CUST0196,Simpson Group,2022-01-03,active,30
+CUST0197,"Evans, Lucero and Collier",2022-01-03,active,45
+CUST0198,"Wright, Chavez and Huber",2022-01-03,active,15
+CUST0199,"Johnson, Long and Baker",2022-01-03,inactive,30
+CUST0200,Coleman-Wise,2022-01-03,active,45
+CUST0201,Lee Ltd,2022-01-03,active,60
+CUST0202,"Rivera, Juarez and Ward",2022-01-03,inactive,60
+CUST0203,Brock-Rivera,2022-01-03,active,30
+CUST0204,Johnson-Ford,2022-01-03,inactive,45
+CUST0205,Barrera Inc,2022-01-03,active,45
+CUST0206,Beard-Kline,2022-01-03,inactive,30
+CUST0207,Price Inc,2022-01-03,active,30
+CUST0208,Bennett-Flores,2022-01-03,inactive,30
+CUST0209,"Hoffman, Miranda and Ayala",2022-01-03,active,30
+CUST0210,"Mcgee, Foster and Farrell",2022-01-03,inactive,15
+CUST0211,Jones-Williams,2022-01-03,inactive,30
+CUST0212,"Ferguson, Nixon and Flores",2022-01-03,inactive,60
+CUST0213,Castaneda Inc,2022-01-03,active,30
+CUST0214,"Shannon, Martin and Butler",2022-01-03,active,15
+CUST0215,"Bartlett, Baker and Garcia",2022-01-03,inactive,15
+CUST0216,Green-Chapman,2022-01-03,active,30
+CUST0217,Cook-Nichols,2022-01-03,inactive,60
+CUST0218,"Kim, Adams and Kelly",2022-01-03,active,30
+CUST0219,"Brooks, Hughes and Robbins",2022-01-03,inactive,15
+CUST0220,Baker-Brooks,2022-01-03,active,60
+CUST0221,Skinner and Sons,2022-01-03,active,45
+CUST0222,"Dillon, Ramirez and Davis",2022-01-10,inactive,60
+CUST0223,"Faulkner, Rodriguez and Reynolds",2022-01-10,active,60
+CUST0224,Brown-Fowler,2022-01-17,active,15
+CUST0225,"Morgan, Fields and Gordon",2022-01-17,inactive,45
+CUST0226,Lloyd PLC,2022-01-17,inactive,30
+CUST0227,"Lewis, Kelley and Lee",2022-01-24,active,30
+CUST0228,"Long, Flores and Cook",2022-01-31,active,45
+CUST0229,Cook Group,2022-02-07,active,15
+CUST0230,Johnson Ltd,2022-02-07,active,60
+CUST0231,Brown-Garner,2022-02-14,inactive,15
+CUST0232,Brandt LLC,2022-02-14,inactive,60
+CUST0233,Price-Kelley,2022-02-14,inactive,60
+CUST0234,Farley Ltd,2022-02-21,active,60
+CUST0235,"Chandler, Miller and Robinson",2022-02-28,active,45
+CUST0236,"Smith, White and Turner",2022-03-07,inactive,30
+CUST0237,Hall Ltd,2022-03-14,inactive,15
+CUST0238,Reynolds-Jackson,2022-03-14,inactive,60
+CUST0239,Thompson-Hill,2022-03-21,active,30
+CUST0240,Williams PLC,2022-03-21,active,30
+CUST0241,Baldwin Group,2022-03-28,active,30
+CUST0242,Scott-Reed,2022-03-28,active,60
+CUST0243,"Combs, Gilmore and Ryan",2022-03-28,inactive,30
+CUST0244,Brown-Edwards,2022-04-04,active,45
+CUST0245,Villarreal-Green,2022-04-11,inactive,30
+CUST0246,"Sosa, Davenport and Carpenter",2022-04-11,active,30
+CUST0247,York-Snyder,2022-04-11,inactive,30
+CUST0248,"Baker, Flores and Morris",2022-04-11,inactive,30
+CUST0249,Montes Ltd,2022-04-18,active,15
+CUST0250,Hart-Cummings,2022-04-18,inactive,15
+CUST0251,Rasmussen LLC,2022-04-18,inactive,15
+CUST0252,Reed Inc,2022-05-02,inactive,15
+CUST0253,Garcia-Miranda,2022-05-30,active,45
+CUST0254,"Montoya, Schultz and Dawson",2022-06-06,active,30
+CUST0255,Barrett and Sons,2022-06-06,active,45
+CUST0256,"Noble, Santiago and Ochoa",2022-06-20,inactive,30
+CUST0257,Reed-Moreno,2022-06-27,active,45
+CUST0258,Johnson Inc,2022-07-04,active,15
+CUST0259,"White, Brown and Williams",2022-07-04,active,45
+CUST0260,"Blackwell, Simmons and Diaz",2022-07-11,inactive,45
+CUST0261,Murphy-Perez,2022-07-11,active,15
+CUST0262,Gill Inc,2022-07-11,inactive,45
+CUST0263,Reynolds Inc,2022-07-18,active,15
+CUST0264,"Marsh, Jones and Johnson",2022-07-25,active,30
+CUST0265,"Pittman, Brady and Medina",2022-08-15,active,45
+CUST0266,Carter-Phillips,2022-08-15,active,30
+CUST0267,Nolan LLC,2022-08-22,active,60
+CUST0268,Estrada and Sons,2022-08-22,active,60
+CUST0269,Baker Inc,2022-08-22,inactive,15
+CUST0270,Garrison-Johnson,2022-08-29,active,60
+CUST0271,Mcdaniel-Lee,2022-09-05,active,45
+CUST0272,Clark Ltd,2022-09-12,active,45
+CUST0273,Franklin LLC,2022-09-12,active,30
+CUST0274,Porter Inc,2022-09-12,active,60
+CUST0275,"Hartman, Fisher and Guzman",2022-09-19,inactive,30
+CUST0276,Foster PLC,2022-09-19,active,15
+CUST0277,"Esparza, Wright and Ramos",2022-09-26,active,30
+CUST0278,Day Inc,2022-10-10,active,30
+CUST0279,Duran Group,2022-10-24,inactive,15
+CUST0280,"Watts, Gray and Roach",2022-10-24,active,45
+CUST0281,Rodriguez-Valentine,2022-10-31,active,15
+CUST0282,Gilbert Ltd,2022-10-31,active,30
+CUST0283,Ramirez-Howe,2022-10-31,active,45
+CUST0284,Mathews-Branch,2022-10-31,active,60
+CUST0285,Martinez-Love,2022-10-31,active,60
+CUST0286,Schwartz-Kramer,2022-11-07,active,45
+CUST0287,Cole Group,2022-11-07,active,60
+CUST0288,"Miller, Whitaker and Chang",2022-11-07,inactive,60
+CUST0289,Bass-Peck,2022-11-14,active,15
+CUST0290,Williams LLC,2022-11-21,active,15
+CUST0291,Bowers Inc,2022-11-21,inactive,30
+CUST0292,Pineda Inc,2022-12-05,inactive,30
+CUST0293,Tucker PLC,2022-12-12,active,30
+CUST0294,Grant Group,2022-12-12,active,60
+CUST0295,Walsh PLC,2022-12-26,inactive,15
+CUST0296,Bush and Sons,2023-01-02,active,60
+CUST0297,Harrison and Sons,2023-01-16,inactive,30
+CUST0298,Mckenzie-Flores,2023-01-16,active,60
+CUST0299,White-Roberts,2023-01-16,inactive,30
+CUST0300,"Anderson, Nicholson and Hammond",2023-01-23,active,60
+CUST0301,"King, Thomas and Acosta",2023-01-23,active,30
+CUST0302,Wright-Gross,2023-01-30,active,45
+CUST0303,"Allen, Johnson and Neal",2023-02-06,active,30
+CUST0304,Smith-Miller,2023-02-06,active,15
+CUST0305,Garcia-Vega,2023-02-20,inactive,60
+CUST0306,Dominguez and Sons,2023-02-27,active,30
+CUST0307,Clark-Williams,2023-03-06,inactive,30
+CUST0308,Allen-Hopkins,2023-03-13,inactive,45
+CUST0309,Durham-Klein,2023-03-13,active,15
+CUST0310,Sullivan LLC,2023-04-17,inactive,15
+CUST0311,Miller-Robinson,2023-04-17,active,60
+CUST0312,"Dennis, Brown and Robles",2023-05-01,active,60
+CUST0313,"Black, Russo and Lewis",2023-05-08,active,15
+CUST0314,White and Sons,2023-05-22,active,45
+CUST0315,"Carter, Lozano and Johnson",2023-05-29,active,30
+CUST0316,"Lozano, Leonard and Ford",2023-06-05,active,15
+CUST0317,Williams Ltd,2023-06-26,inactive,30
+CUST0318,Jones-Church,2023-06-26,active,15
+CUST0319,Hill Ltd,2023-07-10,active,60
+CUST0320,"Jones, Lambert and Gray",2023-07-10,active,60
+CUST0321,Becker-Ross,2023-07-10,inactive,60
+CUST0322,Wilson-Pruitt,2023-07-17,active,15
+CUST0323,Hale-Powell,2023-07-17,active,45
+CUST0324,Daniel and Sons,2023-08-07,active,15
+CUST0325,"Sims, Bennett and Buckley",2023-08-21,active,45
+CUST0326,Stephenson-Sosa,2023-09-04,inactive,45
+CUST0327,"Ellis, Lester and Villanueva",2023-09-04,active,15
+CUST0328,Smith PLC,2023-09-18,inactive,15
+CUST0329,Carlson-Rivera,2023-09-18,active,30
+CUST0330,King PLC,2023-09-25,inactive,45
+CUST0331,Acosta-Anderson,2023-09-25,inactive,60
+CUST0332,Decker Inc,2023-10-02,active,15
+CUST0333,Roberts-Holmes,2023-10-16,active,45
+CUST0334,Estrada Inc,2023-10-23,active,60
+CUST0335,"Vang, Bell and Brown",2023-11-06,active,60
+CUST0336,Harvey Ltd,2023-11-06,inactive,45
+CUST0337,"Guerra, Young and Davila",2023-11-06,active,15
+CUST0338,Morgan Group,2023-11-13,active,30
+CUST0339,Roman-Meyer,2023-11-20,active,30
+CUST0340,Krause Ltd,2023-11-27,active,15
+CUST0341,Bean-Ortiz,2024-01-01,active,15
+CUST0342,Daniel PLC,2024-01-08,active,30
+CUST0343,Hill-Powell,2024-01-15,inactive,45
+CUST0344,"Rios, Bates and Robinson",2024-01-15,inactive,15
+CUST0345,Thomas-Tyler,2024-01-15,active,60
+CUST0346,Carter Ltd,2024-01-15,inactive,60
+CUST0347,Johnson-Davidson,2024-01-22,active,30
+CUST0348,Robinson Inc,2024-01-29,active,15
+CUST0349,"Travis, Smith and Reid",2024-02-12,active,45
+CUST0350,Hunter-Tate,2024-02-26,inactive,30
+CUST0351,Baker-Johnson,2024-03-11,active,60
+CUST0352,Parker-Dunn,2024-03-11,inactive,30
+CUST0353,"Larson, Thompson and Berry",2024-04-15,active,45
+CUST0354,"Mayer, Perez and Weaver",2024-04-29,active,30
+CUST0355,Rodgers PLC,2024-05-06,active,15
+CUST0356,Avila-Harrell,2024-05-06,active,30
+CUST0357,Watkins-Conley,2024-05-20,active,15
+CUST0358,Soto Group,2024-05-27,inactive,15
+CUST0359,White Group,2024-05-27,active,60
+CUST0360,Reese-Johnson,2024-06-10,active,60
+CUST0361,Moore-Sanders,2024-06-10,active,60
+CUST0362,Bennett-Gilbert,2024-06-24,active,30
+CUST0363,Sullivan-Lewis,2024-06-24,inactive,60
+CUST0364,"Reilly, Harris and Thompson",2024-07-15,active,15
+CUST0365,Miller-Jones,2024-07-22,active,30
+CUST0366,"Hunt, Erickson and Johns",2024-07-22,active,15
+CUST0367,"Anderson, Brown and Johnson",2024-07-29,active,30
+CUST0368,Figueroa-Smith,2024-07-29,inactive,30
+CUST0369,Smith-Valdez,2024-09-30,active,60
+CUST0370,"Mercer, Olson and Bell",2024-10-07,active,45
+CUST0371,Brown LLC,2024-10-14,active,15
+CUST0372,"Brown, Liu and Robinson",2024-10-21,active,45
+CUST0373,Phillips PLC,2024-10-28,active,15
+CUST0374,"Brown, Thomas and Rivers",2024-10-28,inactive,30
+CUST0375,Mitchell-Wells,2024-11-04,inactive,60
+CUST0376,Smith-Doyle,2024-12-02,inactive,45
+CUST0377,Allen Inc,2024-12-09,active,60
+CUST0378,Espinoza-Johnson,2024-12-30,active,45
+CUST0379,Hamilton LLC,2025-01-06,active,30
+CUST0380,Jimenez and Sons,2025-01-13,active,30
+CUST0381,Lewis-Nelson,2025-01-20,active,15
+CUST0382,Patrick-Terry,2025-01-20,active,15
+CUST0383,"Chavez, Johnson and White",2025-02-03,active,30
+CUST0384,Cannon Ltd,2025-02-03,active,15
+CUST0385,"Sims, Hicks and Faulkner",2025-02-10,active,60
+CUST0386,Smith-Armstrong,2025-03-03,active,15
+CUST0387,Green-Pham,2025-03-10,active,15
+CUST0388,"Schwartz, Adams and Stewart",2025-03-17,active,60
+CUST0389,"Campbell, Jones and Phelps",2025-04-07,active,15
+CUST0390,Roach LLC,2025-04-07,active,30
+CUST0391,"Johnson, Cooper and Galloway",2025-04-14,active,45
+CUST0392,Warner Inc,2025-04-21,active,45
+CUST0393,Brock Group,2025-05-05,active,60
+CUST0394,"Bishop, Walker and Butler",2025-05-12,active,30
+CUST0395,Casey-Brady,2025-05-12,active,15
+CUST0396,Johnson and Sons,2025-06-02,active,30
+CUST0397,Andrews-Burton,2025-06-30,active,30
+CUST0398,Parks-Davis,2025-06-30,active,30
+CUST0399,"Johnson, Blanchard and Jones",2025-07-07,active,45
+CUST0400,Meyer Inc,2025-07-07,active,45
+CUST0401,Gardner-Rivera,2025-07-14,active,60
+CUST0402,"Becker, Kennedy and Fuller",2025-07-14,active,60
+CUST0403,"Reynolds, Johnson and Frank",2025-08-04,active,45
+CUST0404,Oneill Group,2025-08-18,inactive,30
+CUST0405,Stewart Ltd,2025-09-01,active,15
+CUST0406,Chang-Rogers,2025-09-15,active,30
+CUST0407,Lopez-Vargas,2025-09-29,active,60
+CUST0408,Martinez-Watson,2025-09-29,active,30
+CUST0409,"Walker, Santiago and Woods",2025-09-29,active,30
+CUST0410,Moore PLC,2025-10-13,active,15
+CUST0411,Taylor-Lane,2025-10-13,active,15
+CUST0412,Brown and Sons,2025-10-20,active,15
+CUST0413,Smith and Sons,2025-11-10,active,60
+CUST0414,Davis and Sons,2025-11-17,active,45
+CUST0415,"Mendez, Manning and Pruitt",2025-11-24,active,45
+CUST0416,Ramos Inc,2025-11-24,active,45
+CUST0417,Johnson-Odonnell,2025-12-08,active,30
